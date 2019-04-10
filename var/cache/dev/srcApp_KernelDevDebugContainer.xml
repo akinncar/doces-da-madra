@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services https://symfony.com/schema/dic/services/services-1.0.xsd">
   <parameters>
-    <parameter key="kernel.root_dir">/Users/akinncar/Fontes/doces-da-madra/src</parameter>
-    <parameter key="kernel.project_dir">/Users/akinncar/Fontes/doces-da-madra</parameter>
+    <parameter key="kernel.root_dir">C:\Fontes\doces-da-madra\src</parameter>
+    <parameter key="kernel.project_dir">C:\Fontes\doces-da-madra</parameter>
     <parameter key="kernel.environment">dev</parameter>
     <parameter key="kernel.debug">true</parameter>
     <parameter key="kernel.name">src</parameter>
-    <parameter key="kernel.cache_dir">/Users/akinncar/Fontes/doces-da-madra/var/cache/dev</parameter>
-    <parameter key="kernel.logs_dir">/Users/akinncar/Fontes/doces-da-madra/var/log</parameter>
+    <parameter key="kernel.cache_dir">C:\Fontes\doces-da-madra\var\cache\dev</parameter>
+    <parameter key="kernel.logs_dir">C:\Fontes\doces-da-madra\var\log</parameter>
     <parameter key="kernel.bundles" type="collection">
       <parameter key="FrameworkBundle">Symfony\Bundle\FrameworkBundle\FrameworkBundle</parameter>
     </parameter>
     <parameter key="kernel.bundles_metadata" type="collection">
       <parameter key="FrameworkBundle" type="collection">
-        <parameter key="path">/Users/akinncar/Fontes/doces-da-madra/vendor/symfony/framework-bundle</parameter>
+        <parameter key="path">C:\Fontes\doces-da-madra\vendor\symfony\framework-bundle</parameter>
         <parameter key="namespace">Symfony\Bundle\FrameworkBundle</parameter>
       </parameter>
     </parameter>
@@ -36,11 +36,11 @@
       <parameter key="cookie_samesite">lax</parameter>
       <parameter key="gc_probability">1</parameter>
     </parameter>
-    <parameter key="session.save_path">/Users/akinncar/Fontes/doces-da-madra/var/cache/dev/sessions</parameter>
+    <parameter key="session.save_path">C:\Fontes\doces-da-madra\var\cache\dev/sessions</parameter>
     <parameter key="session.metadata.update_threshold">0</parameter>
     <parameter key="data_collector.templates" type="collection"/>
     <parameter key="debug.error_handler.throw_at">-1</parameter>
-    <parameter key="debug.container.dump">/Users/akinncar/Fontes/doces-da-madra/var/cache/dev/srcApp_KernelDevDebugContainer.xml</parameter>
+    <parameter key="debug.container.dump">C:\Fontes\doces-da-madra\var\cache\dev/srcApp_KernelDevDebugContainer.xml</parameter>
     <parameter key="router.request_context.host">localhost</parameter>
     <parameter key="router.request_context.scheme">http</parameter>
     <parameter key="router.request_context.base_url"></parameter>
@@ -281,7 +281,7 @@
     <service id="cache_warmer" class="Symfony\Component\HttpKernel\CacheWarmer\CacheWarmerAggregate" public="true">
       <argument type="tagged" tag="kernel.cache_warmer"/>
       <argument>true</argument>
-      <argument>/Users/akinncar/Fontes/doces-da-madra/var/cache/dev/srcApp_KernelDevDebugContainerDeprecations.log</argument>
+      <argument>C:\Fontes\doces-da-madra\var\cache\dev/srcApp_KernelDevDebugContainerDeprecations.log</argument>
     </service>
     <service id="cache_clearer" class="Symfony\Component\HttpKernel\CacheClearer\ChainCacheClearer" public="true">
       <argument type="tagged" tag="kernel.cache_clearer"/>
@@ -290,9 +290,9 @@
     <service id="filesystem" class="Symfony\Component\Filesystem\Filesystem" public="true"/>
     <service id="file_locator" class="Symfony\Component\HttpKernel\Config\FileLocator" public="false">
       <argument type="service" id="kernel"/>
-      <argument>/Users/akinncar/Fontes/doces-da-madra/src/Resources</argument>
+      <argument>C:\Fontes\doces-da-madra\src/Resources</argument>
       <argument type="collection">
-        <argument>/Users/akinncar/Fontes/doces-da-madra/src</argument>
+        <argument>C:\Fontes\doces-da-madra\src</argument>
       </argument>
     </service>
     <service id="uri_signer" class="Symfony\Component\HttpKernel\UriSigner" public="false">
@@ -438,9 +438,9 @@
     </service>
     <service id="cache.app" class="Symfony\Component\Cache\Adapter\FilesystemAdapter" public="true">
       <tag name="cache.pool"/>
-      <argument>YQaZOLTzFM</argument>
+      <argument>OGQqkSCKVk</argument>
       <argument>0</argument>
-      <argument>/Users/akinncar/Fontes/doces-da-madra/var/cache/dev/pools</argument>
+      <argument>C:\Fontes\doces-da-madra\var\cache\dev/pools</argument>
       <argument type="service" id="cache.default_marshaller" on-invalid="ignore"/>
       <call method="setLogger">
         <argument type="service" id="logger" on-invalid="ignore"/>
@@ -454,37 +454,37 @@
     </service>
     <service id="cache.system" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="true">
       <tag name="cache.pool"/>
-      <argument>rWbmCZfJAK</argument>
+      <argument>r2jpb8KHTZ</argument>
       <argument>0</argument>
       <argument>%container.build_id%</argument>
-      <argument>/Users/akinncar/Fontes/doces-da-madra/var/cache/dev/pools</argument>
+      <argument>C:\Fontes\doces-da-madra\var\cache\dev/pools</argument>
       <argument type="service" id="logger" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
     </service>
     <service id="cache.validator" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false">
       <tag name="cache.pool"/>
-      <argument>P3X9DEXePG</argument>
+      <argument>uxs6IYSALw</argument>
       <argument>0</argument>
       <argument>%container.build_id%</argument>
-      <argument>/Users/akinncar/Fontes/doces-da-madra/var/cache/dev/pools</argument>
+      <argument>C:\Fontes\doces-da-madra\var\cache\dev/pools</argument>
       <argument type="service" id="logger" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
     </service>
     <service id="cache.serializer" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false">
       <tag name="cache.pool"/>
-      <argument>T3NpoGcJrO</argument>
+      <argument>U8T7-iNkqY</argument>
       <argument>0</argument>
       <argument>%container.build_id%</argument>
-      <argument>/Users/akinncar/Fontes/doces-da-madra/var/cache/dev/pools</argument>
+      <argument>C:\Fontes\doces-da-madra\var\cache\dev/pools</argument>
       <argument type="service" id="logger" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
     </service>
     <service id="cache.annotations" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false">
       <tag name="cache.pool"/>
-      <argument>LGo-MEkbTs</argument>
+      <argument>BaarIY7qEh</argument>
       <argument>0</argument>
       <argument>%container.build_id%</argument>
-      <argument>/Users/akinncar/Fontes/doces-da-madra/var/cache/dev/pools</argument>
+      <argument>C:\Fontes\doces-da-madra\var\cache\dev/pools</argument>
       <argument type="service" id="logger" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
     </service>
@@ -494,7 +494,7 @@
       <argument></argument>
       <argument>0</argument>
       <argument>%container.build_id%</argument>
-      <argument>/Users/akinncar/Fontes/doces-da-madra/var/cache/dev/pools</argument>
+      <argument>C:\Fontes\doces-da-madra\var\cache\dev/pools</argument>
       <argument type="service" id="logger" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
     </service>
@@ -523,7 +523,7 @@
       <tag name="monolog.logger" channel="cache"/>
       <argument></argument>
       <argument>0</argument>
-      <argument>/Users/akinncar/Fontes/doces-da-madra/var/cache/dev/pools</argument>
+      <argument>C:\Fontes\doces-da-madra\var\cache\dev/pools</argument>
       <argument type="service" id="cache.default_marshaller" on-invalid="ignore"/>
       <call method="setLogger">
         <argument type="service" id="logger" on-invalid="ignore"/>
@@ -606,8 +606,8 @@
         <argument key="cache.annotations" type="service" id="cache.annotations" on-invalid="ignore_uninitialized"/>
       </argument>
     </service>
-    <service id=".1_NativeFileSessionHandler~jD.TL9h" class="Symfony\Component\HttpFoundation\Session\Storage\Handler\NativeFileSessionHandler" public="false">
-      <argument>/Users/akinncar/Fontes/doces-da-madra/var/cache/dev/sessions</argument>
+    <service id=".1_NativeFileSessionHandler~2xynS.l" class="Symfony\Component\HttpFoundation\Session\Storage\Handler\NativeFileSessionHandler" public="false">
+      <argument>C:\Fontes\doces-da-madra\var\cache\dev/sessions</argument>
     </service>
     <service id="session" class="Symfony\Component\HttpFoundation\Session\Session" public="true">
       <tag name="kernel.reset" method="save"/>
@@ -631,12 +631,12 @@
     <service id="session.flash_bag" class="Symfony\Component\HttpFoundation\Session\Flash\FlashBag" public="false"/>
     <service id="session.attribute_bag" class="Symfony\Component\HttpFoundation\Session\Attribute\AttributeBag" public="false"/>
     <service id="session.storage.mock_file" class="Symfony\Component\HttpFoundation\Session\Storage\MockFileSessionStorage" public="false">
-      <argument>/Users/akinncar/Fontes/doces-da-madra/var/cache/dev/sessions</argument>
+      <argument>C:\Fontes\doces-da-madra\var\cache\dev/sessions</argument>
       <argument>MOCKSESSID</argument>
       <argument type="service" id="session.storage.metadata_bag"/>
     </service>
     <service id="session.handler.native_file" class="Symfony\Component\HttpFoundation\Session\Storage\Handler\StrictSessionHandler" public="false">
-      <argument type="service" id=".1_NativeFileSessionHandler~jD.TL9h"/>
+      <argument type="service" id=".1_NativeFileSessionHandler~2xynS.l"/>
     </service>
     <service id="session_listener" class="Symfony\Component\HttpKernel\EventListener\SessionListener" public="false">
       <tag name="kernel.event_subscriber"/>
@@ -734,7 +734,7 @@
       <argument type="service" id=".service_locator.MAfdX1A.router.default"/>
       <argument>kernel::loadRoutes</argument>
       <argument type="collection">
-        <argument key="cache_dir">/Users/akinncar/Fontes/doces-da-madra/var/cache/dev</argument>
+        <argument key="cache_dir">C:\Fontes\doces-da-madra\var\cache\dev</argument>
         <argument key="debug">true</argument>
         <argument key="generator_class">Symfony\Component\Routing\Generator\UrlGenerator</argument>
         <argument key="generator_base_class">Symfony\Component\Routing\Generator\UrlGenerator</argument>
@@ -776,7 +776,7 @@
       <argument type="service" id="request_stack"/>
       <argument type="service" id="router.request_context" on-invalid="ignore"/>
       <argument type="service" id="logger" on-invalid="ignore"/>
-      <argument>/Users/akinncar/Fontes/doces-da-madra</argument>
+      <argument>C:\Fontes\doces-da-madra</argument>
       <argument>true</argument>
     </service>
     <service id="Symfony\Bundle\FrameworkBundle\Controller\RedirectController" class="Symfony\Bundle\FrameworkBundle\Controller\RedirectController" public="true">
