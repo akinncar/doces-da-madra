@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Pedido
  *
- * @ORM\Table(name="pedido")
+ * @ORM\Table(name="pedido", indexes={@ORM\Index(name="fk_id_usuario", columns={"id_usuario"})})
  * @ORM\Entity
  */
 class Pedido
@@ -20,13 +20,6 @@ class Pedido
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="id_usuario", type="integer", nullable=false)
-     */
-    private $idUsuario;
 
     /**
      * @var \DateTime
@@ -52,9 +45,126 @@ class Pedido
     /**
      * @var string|null
      *
-     * @ORM\Column(name="obs", type="string", length=260, nullable=true)
+     * @ORM\Column(name="obs", type="string", length=255, nullable=true)
      */
     private $obs;
 
+    /**
+     * @var \Usuario
+     *
+     * @ORM\ManyToOne(targetEntity="Usuario")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_usuario", referencedColumnName="id")
+     * })
+     */
+    private $idUsuario;
+
+    /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     * @return Pedido
+     */
+    public function setId(int $id): Pedido
+    {
+        $this->id = $id;
+        return $this;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getDataCriacao(): \DateTime
+    {
+        return $this->dataCriacao;
+    }
+
+    /**
+     * @param \DateTime $dataCriacao
+     * @return Pedido
+     */
+    public function setDataCriacao(\DateTime $dataCriacao): Pedido
+    {
+        $this->dataCriacao = $dataCriacao;
+        return $this;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getHoraCriacao(): \DateTime
+    {
+        return $this->horaCriacao;
+    }
+
+    /**
+     * @param \DateTime $horaCriacao
+     * @return Pedido
+     */
+    public function setHoraCriacao(\DateTime $horaCriacao): Pedido
+    {
+        $this->horaCriacao = $horaCriacao;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getValor(): string
+    {
+        return $this->valor;
+    }
+
+    /**
+     * @param string $valor
+     * @return Pedido
+     */
+    public function setValor(string $valor): Pedido
+    {
+        $this->valor = $valor;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getObs(): ?string
+    {
+        return $this->obs;
+    }
+
+    /**
+     * @param string|null $obs
+     * @return Pedido
+     */
+    public function setObs(?string $obs): Pedido
+    {
+        $this->obs = $obs;
+        return $this;
+    }
+
+    /**
+     * @return \Usuario
+     */
+    public function getIdUsuario(): \Usuario
+    {
+        return $this->idUsuario;
+    }
+
+    /**
+     * @param \Usuario $idUsuario
+     * @return Pedido
+     */
+    public function setIdUsuario(\Usuario $idUsuario): Pedido
+    {
+        $this->idUsuario = $idUsuario;
+        return $this;
+    }
 
 }

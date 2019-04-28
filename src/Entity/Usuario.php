@@ -6,7 +6,10 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\UsuarioRepository")
+ * Usuario
+ *
+ * @ORM\Table(name="usuario", uniqueConstraints={@ORM\UniqueConstraint(name="UNIQ_2265B05D3E3E11F0", columns={"cpf"}), @ORM\UniqueConstraint(name="UNIQ_2265B05DE7927C74", columns={"email"})})
+ * @ORM\Entity
  */
 class Usuario implements UserInterface
 {
@@ -18,14 +21,56 @@ class Usuario implements UserInterface
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=180, unique=true)
+     * @var string
+     *
+     * @ORM\Column(name="username", type="string", length=180, nullable=false, unique=true)
+     */
+    private $username;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nome", type="string", length=120, nullable=false)
+     */
+    private $nome;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=60, nullable=false, unique=true)
      */
     private $email;
 
     /**
-     * @ORM\Column(type="json")
+     * @var string
+     *
+     * @ORM\Column(name="cpf", type="string", length=15, nullable=false)
      */
-    private $roles = [];
+    private $cpf;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="telefone", type="string", length=25, nullable=false)
+     */
+    private $telefone;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $roles = 'ROLE_USER';
+
+    public function getRoles()
+    {
+        return [$this->roles];
+
+    }
+
+    public function setRoles($roles)
+    {
+        $this->roles = $roles;
+        return $this;
+    }
 
     /**
      * @var string The hashed password
@@ -33,31 +78,9 @@ class Usuario implements UserInterface
      */
     private $password;
 
-    /**
-     * @ORM\Column(type="string", length=120)
-     */
-    private $nome;
-
-    /**
-     * @ORM\Column(type="string", length=15, unique=true)
-     */
-    private $cpf;
-
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getEmail(): ?string
-    {
-        return $this->email;
-    }
-
-    public function setEmail(string $email): self
-    {
-        $this->email = $email;
-
-        return $this;
     }
 
     /**
@@ -67,27 +90,33 @@ class Usuario implements UserInterface
      */
     public function getUsername(): string
     {
-        return (string) $this->email;
+        return (string) $this->username;
+    }
+
+    public function setUsername(string $username): self
+    {
+        $this->username = $username;
+
+        return $this;
     }
 
     /**
      * @see UserInterface
      */
-    public function getRoles(): array
-    {
-        $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
-
-        return array_unique($roles);
-    }
-
-    public function setRoles(array $roles): self
-    {
-        $this->roles = $roles;
-
-        return $this;
-    }
+//    public function getRoles(): array
+//    {
+//        $roles = $this->roles;
+//        // guarantee every user at least has ROLE_USER
+//        $roles[] = 'ROLE_USER';
+//
+//        return array_unique($roles);
+//    }
+//
+//    public function setRoles(array $roles): self
+//    {
+//        $this->roles = $roles;
+//        return $this;
+//    }
 
     /**
      * @see UserInterface
@@ -122,38 +151,74 @@ class Usuario implements UserInterface
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getNome()
+    public function getNome(): string
     {
         return $this->nome;
     }
 
     /**
-     * @param mixed $nome
+     * @param string $nome
      * @return Usuario
      */
-    public function setNome($nome)
+    public function setNome(string $nome): Usuario
     {
         $this->nome = $nome;
         return $this;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getCpf()
+    public function getCpf(): string
     {
         return $this->cpf;
     }
 
     /**
-     * @param mixed $cpf
+     * @param string $cpf
      * @return Usuario
      */
-    public function setCpf($cpf)
+    public function setCpf(string $cpf): Usuario
     {
         $this->cpf = $cpf;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTelefone(): string
+    {
+        return $this->telefone;
+    }
+
+    /**
+     * @param string $telefone
+     * @return Usuario
+     */
+    public function setTelefone(string $telefone): Usuario
+    {
+        $this->telefone = $telefone;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEmail(): string
+    {
+        return $this->email;
+    }
+
+    /**
+     * @param string $email
+     * @return Usuario
+     */
+    public function setEmail(string $email): Usuario
+    {
+        $this->email = $email;
         return $this;
     }
 
