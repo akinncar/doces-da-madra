@@ -23,6 +23,7 @@ class srcApp_KernelDevDebugContainerUrlMatcher extends Symfony\Bundle\FrameworkB
             '/cadastro' => [[['_route' => 'cadastrar_usuario', '_controller' => 'App\\Controller\\Base\\CadastroController::create'], null, null, null, false, false, null]],
             '/' => [[['_route' => 'default', '_controller' => 'App\\Controller\\DefaultController::index'], null, null, null, false, false, null]],
             '/login' => [[['_route' => 'app_login', '_controller' => 'App\\Controller\\SecurityController::login'], null, null, null, false, false, null]],
+            '/carrinho' => [[['_route' => 'carrinho', '_controller' => 'App\\Controller\\Usuario\\CarrinhoController::index'], null, null, null, false, false, null]],
         ];
         $this->regexpList = [
             0 => '{^(?'

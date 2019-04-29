@@ -35,6 +35,7 @@ class srcApp_KernelDevDebugContainerUrlGenerator extends Symfony\Component\Routi
         'cadastrar_usuario' => [[], ['_controller' => 'App\\Controller\\Base\\CadastroController::create'], [], [['text', '/cadastro']], [], []],
         'default' => [[], ['_controller' => 'App\\Controller\\DefaultController::index'], [], [['text', '/']], [], []],
         'app_login' => [[], ['_controller' => 'App\\Controller\\SecurityController::login'], [], [['text', '/login']], [], []],
+        'carrinho' => [[], ['_controller' => 'App\\Controller\\Usuario\\CarrinhoController::index'], [], [['text', '/carrinho']], [], []],
     ];
         }
     }

@@ -153,7 +153,7 @@ class Usuario implements UserInterface
     /**
      * @return string
      */
-    public function getNome(): string
+    public function getNome()
     {
         return $this->nome;
     }
@@ -171,7 +171,7 @@ class Usuario implements UserInterface
     /**
      * @return string
      */
-    public function getCpf(): string
+    public function getCpf()
     {
         return $this->cpf;
     }
@@ -189,7 +189,7 @@ class Usuario implements UserInterface
     /**
      * @return string
      */
-    public function getTelefone(): string
+    public function getTelefone()
     {
         return $this->telefone;
     }
@@ -207,7 +207,7 @@ class Usuario implements UserInterface
     /**
      * @return string
      */
-    public function getEmail(): string
+    public function getEmail()
     {
         return $this->email;
     }

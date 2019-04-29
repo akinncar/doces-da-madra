@@ -6,6 +6,16 @@
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
+        {% block header %}
+            <header>
+                <ul>
+                    <li><a href="{{ path('default') }}"> Início </a></li>
+                    <li><a href="{{ path('cadastrar_usuario') }}"> Cadastrar Usuário</a></li>
+                    <li><a href="{{ path('app_login') }}">Entrar</a></li>
+                    <li><a href="{{ path('carrinho') }}">Carrinho</a></li>
+                </ul>
+            </header>
+        {% endblock %}
         {% block body %}
         {% endblock %}
         {% block javascripts %}{% endblock %}
