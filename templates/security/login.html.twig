@@ -8,7 +8,7 @@
             <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
         {% endif %}
 
-        <h1 class="h3 mb-3 font-weight-normal">Digite suas informações para entrar no sistema</h1>
+        <h3 class="h3 mb-3 font-weight-normal">Digite suas informações para entrar no sistema</h3>
         <label for="inputEmail" class="sr-only">Nome de Usuário</label>
         <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" placeholder="Nome de usuário" required autofocus>
         <label for="inputPassword" class="sr-only">Senha</label>

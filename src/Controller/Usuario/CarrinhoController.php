@@ -8,14 +8,10 @@
 
 namespace App\Controller\Usuario;
 
-use App\Entity\Usuario;
-use App\Form\Base\UsuarioType;
-// use App\Repository\UserRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Security\Core\Security;
 use Symfony\Component\VarDumper\VarDumper;
 
 class CarrinhoController extends AbstractController
@@ -26,5 +22,20 @@ class CarrinhoController extends AbstractController
      */
     public function index() {
         return[];
+    }
+
+    /**
+     * @Route("/adicionar-ao-carrinho/{idProduto}", name="adicionar_carrinho")
+     */
+    public function adicionar(Security $security, $idProduto) {
+        $idUsuario = $security->getUser()->getId();
+
+        VarDumper::dump('id do user');
+        VarDumper::dump($idUsuario);
+        VarDumper::dump('id do produto');
+        VarDumper::dump(intval($idProduto));
+        die;
+
+        return $this->redirectToRoute('default');
     }
 }

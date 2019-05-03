@@ -42,6 +42,7 @@ class srcApp_KernelDevDebugContainerUrlMatcher extends Symfony\Bundle\FrameworkB
                             .'|(*:159)'
                         .')'
                     .')'
+                    .'|/adicionar\\-ao\\-carrinho/([^/]++)(*:202)'
                 .')/?$}sDu',
         ];
         $this->dynamicRoutes = [
@@ -52,6 +53,7 @@ class srcApp_KernelDevDebugContainerUrlMatcher extends Symfony\Bundle\FrameworkB
             136 => [[['_route' => '_profiler_exception', '_controller' => 'web_profiler.controller.exception::showAction'], ['token'], null, null, false, false, null]],
             149 => [[['_route' => '_profiler_exception_css', '_controller' => 'web_profiler.controller.exception::cssAction'], ['token'], null, null, false, false, null]],
             159 => [[['_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'], ['token'], null, null, false, true, null]],
+            202 => [[['_route' => 'adicionar_carrinho', '_controller' => 'App\\Controller\\Usuario\\CarrinhoController::adicionar'], ['idProduto'], null, null, false, true, null]],
         ];
     }
 }

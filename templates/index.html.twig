@@ -1,6 +1,32 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Oiee</h1>
+    <h3>Produtos</h3>
+   <table class="centered">
+       <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Preço</th>
+                <th>Descrição</th>
+                <th>Teste</th>
+                {% if is_granted('ROLE_USER') %}
+                    <th>Opçõe</th>
+                {% endif %}
+            </tr>
+       </thead>
+       <tbody>
+           {% for produto in produtos %}
+                <tr>
+                    <td>{{ produto.nome }}</td>
+                    <td>R$ {{ produto.precovenda }}</td>
+                    <td>{{ produto.descricao }}</td>
+                    <td>Teste</td>
+                    {% if is_granted('ROLE_USER') %}
+                        <td><a href="{{ path('adicionar_carrinho', { 'idProduto': produto.id }) }}">Adicionar ao carrinho</a></td>
+                    {% endif %}
+                </tr>
+           {% endfor %}
+       </tbody>
+   </table>
 {% endblock %}
 

@@ -3,21 +3,28 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Doces da Madra{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        {% block stylesheets %}
+            <link href="/assets/css/materialize.css" rel="stylesheet">
+        {% endblock %}
     </head>
     <body>
         {% block header %}
-            <header>
-                <ul>
-                    <li><a href="{{ path('default') }}"> Início </a></li>
-                    <li><a href="{{ path('cadastrar_usuario') }}"> Cadastrar Usuário</a></li>
-                    <li><a href="{{ path('app_login') }}">Entrar</a></li>
-                    <li><a href="{{ path('carrinho') }}">Carrinho</a></li>
-                </ul>
-            </header>
+            <nav>
+                <div class="nav-wrapper blue">
+                    <a href="#" class="brand-logo">Doces da Madra</a>
+                    <ul id="nav-mobile" class="right hide-on-med-and-down">
+                        <li><a href="{{ path('default') }}"> Início </a></li>
+                        <li><a href="{{ path('cadastrar_usuario') }}">Cadastrar Usuário</a></li>
+                        <li><a href="{{ path('app_login') }}">Entrar</a></li>
+                        <li><a href="{{ path('carrinho') }}">Carrinho</a></li>
+                    </ul>
+                </div>
+            </nav>
         {% endblock %}
+
         {% block body %}
         {% endblock %}
+
         {% block javascripts %}{% endblock %}
     </body>
 </html>
