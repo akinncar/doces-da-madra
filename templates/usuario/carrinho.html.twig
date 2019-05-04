@@ -1,5 +1,37 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h3>Carrinho de compras</h3>
+    {% if is_granted('ROLE_USER') %}
+        <h3>Carrinho de compras</h3>
+        <table class="centered">
+            <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Quantidade</th>
+                <th>Remover</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for produto in produtos %}
+                <tr>
+                    <td>{{ produto.nome }}</td>
+                    {% for key, qtd in qtd_produtos  %}
+                        {% if key is same as (produto.id) %}
+                            <td>{{ qtd }}</td>
+                        {% endif %}
+                    {% endfor %}
+                    <td>
+                        <a class="btn red" href="{{ path('remover_carrinho', { 'idProduto': produto.id }) }}">
+                            <i class="material-icons">
+                                remove_shopping_cart
+                            </i>
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <span>Você precisa fazer login no sistema para ter acesso ao carrinho</span>
+    {% endif %}
 {% endblock %}

@@ -2,7 +2,7 @@
 
 {% block body %}
     <h3>Produtos</h3>
-   <table class="centered">
+    <table class="centered">
        <thead>
             <tr>
                 <th>Nome</th>
@@ -22,11 +22,17 @@
                     <td>{{ produto.descricao }}</td>
                     <td>Teste</td>
                     {% if is_granted('ROLE_USER') %}
-                        <td><a href="{{ path('adicionar_carrinho', { 'idProduto': produto.id }) }}">Adicionar ao carrinho</a></td>
+                        <td>
+                            <a class="btn blue" href="{{ path('adicionar_carrinho', { 'idProduto': produto.id }) }}">
+                                <i class="material-icons">
+                                    add_shopping_cart
+                                </i>
+                            </a>
+                        </td>
                     {% endif %}
                 </tr>
            {% endfor %}
        </tbody>
-   </table>
+    </table>
 {% endblock %}
 

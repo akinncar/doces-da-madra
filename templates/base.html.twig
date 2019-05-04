@@ -5,6 +5,7 @@
         <title>{% block title %}Doces da Madra{% endblock %}</title>
         {% block stylesheets %}
             <link href="/assets/css/materialize.css" rel="stylesheet">
+            <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         {% endblock %}
     </head>
     <body>
@@ -15,8 +16,8 @@
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
                         <li><a href="{{ path('default') }}"> Início </a></li>
                         <li><a href="{{ path('cadastrar_usuario') }}">Cadastrar Usuário</a></li>
-                        <li><a href="{{ path('app_login') }}">Entrar</a></li>
                         <li><a href="{{ path('carrinho') }}">Carrinho</a></li>
+                        <li><a href="{{ path('app_login') }}">Entrar</a></li>
                     </ul>
                 </div>
             </nav>

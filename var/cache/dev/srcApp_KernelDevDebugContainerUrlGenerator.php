@@ -37,6 +37,7 @@ class srcApp_KernelDevDebugContainerUrlGenerator extends Symfony\Component\Routi
         'app_login' => [[], ['_controller' => 'App\\Controller\\SecurityController::login'], [], [['text', '/login']], [], []],
         'carrinho' => [[], ['_controller' => 'App\\Controller\\Usuario\\CarrinhoController::index'], [], [['text', '/carrinho']], [], []],
         'adicionar_carrinho' => [['idProduto'], ['_controller' => 'App\\Controller\\Usuario\\CarrinhoController::adicionar'], [], [['variable', '/', '[^/]++', 'idProduto', true], ['text', '/adicionar-ao-carrinho']], [], []],
+        'remover_carrinho' => [['idProduto'], ['_controller' => 'App\\Controller\\Usuario\\CarrinhoController::remover'], [], [['variable', '/', '[^/]++', 'idProduto', true], ['text', '/remover_do_carrinho']], [], []],
     ];
         }
     }
