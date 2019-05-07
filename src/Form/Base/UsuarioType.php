@@ -3,6 +3,7 @@
 namespace App\Form\Base;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
@@ -26,7 +27,7 @@ class UsuarioType extends AbstractType
                 ]
             ])
 
-            ->add('email', TextType::class, [
+            ->add('email', EmailType::class, [
                 'label' => "E-mail",
                 'constraints' => array(new Length(array('min' => 6, 'max' => 60))),
                 'attr' => [

@@ -22,12 +22,18 @@
                     <td>{{ produto.descricao }}</td>
                     <td>Teste</td>
                     {% if is_granted('ROLE_USER') %}
-                        <td>
-                            <a class="btn blue" href="{{ path('adicionar_carrinho', { 'idProduto': produto.id }) }}">
-                                <i class="material-icons">
-                                    add_shopping_cart
-                                </i>
-                            </a>
+                        <td class="row centered">
+                            {#<form action="" type="POST">#}
+                                {#<input class="col s9" type="number">#}
+                            {#</form>#}
+                            <div class="col s6">
+                                {{ form(form) }}
+                            </div>
+                            {#<a class="btn blue col s2" href="{{ path('adicionar_carrinho', { 'idProduto': produto.id }) }}">#}
+                                {#<i class="material-icons">#}
+                                    {#add_shopping_cart#}
+                                {#</i>#}
+                            {#</a>#}
                         </td>
                     {% endif %}
                 </tr>

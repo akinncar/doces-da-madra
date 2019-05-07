@@ -9,12 +9,14 @@
 namespace App\Controller\Usuario;
 
 use App\Entity\Produto;
+use App\Form\Base\QuantidadeType;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\VarDumper\VarDumper;
+use Symfony\Component\HttpFoundation\Request;
 
 class CarrinhoController extends AbstractController
 {
@@ -31,14 +33,14 @@ class CarrinhoController extends AbstractController
      */
     public function index() {
         $carrinhoArray = array();
-        $sessionActual = array();
+        $currentSession = array();
 
         $em = $this->getDoctrine()->getManager();
 
-        $sessionActual = $this->session->all();
-        $sessionActualKey = array_keys($sessionActual);
+        $currentSession = $this->session->all();
+        $currentSessionKey = array_keys($currentSession);
 
-        foreach ( $sessionActualKey as $produto) {
+        foreach ( $currentSessionKey as $produto) {
             $objProduto = $em->getRepository(Produto::class)->find($produto);
             if ($objProduto !== null) {
                 $carrinhoArray[] = $objProduto;
@@ -47,17 +49,34 @@ class CarrinhoController extends AbstractController
 
         return[
             'produtos' => $carrinhoArray,
-            'qtd_produtos' => $sessionActual,
+            'qtd_produtos' => $currentSession,
         ];
     }
 
     /**
      * @Route("/adicionar-ao-carrinho/{idProduto}", name="adicionar_carrinho")
+     * @Template("helpers/quantidade.html.twig")
      */
-    public function adicionar($idProduto) {
-        $this->session->set($idProduto, 30);
+    public function adicionar(Request $request, $idProduto = 0) {
+//        $form = $this->createForm(QuantidadeType::class);
+//        $form->handleRequest($request);
+//
+//        if ($form->isSubmitted()) {
+//
+//            VarDumper::dump( $this->session->set($idProduto, 30));
+//            VarDumper::dump('deu certo');
+//            die;
+//
+//            return $this->redirectToRoute('carrinho');
+//        }
+//
+//        VarDumper::dump($request->getMethod());
+//        VarDumper::dump('n deu certo');
+//        die;
 
-        return $this->redirectToRoute('carrinho');
+//        return [
+//            'form' => $form->createView()
+//        ];
     }
 
     /**

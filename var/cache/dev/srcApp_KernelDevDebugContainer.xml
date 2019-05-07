@@ -376,6 +376,7 @@
     <service id="App\Controller\DefaultController" class="App\Controller\DefaultController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
+      <argument type="service" id="session"/>
       <call method="setContainer">
         <argument type="service" id=".service_locator.KTVqfp6.App\Controller\DefaultController"/>
       </call>
@@ -401,6 +402,9 @@
     </service>
     <service id="App\DataFixtures\UsuarioFixtures" class="App\DataFixtures\UsuarioFixtures" autowire="true" autoconfigure="true">
       <tag name="doctrine.fixture.orm"/>
+    </service>
+    <service id="App\Form\Base\QuantidadeType" class="App\Form\Base\QuantidadeType" autowire="true" autoconfigure="true">
+      <tag name="form.type"/>
     </service>
     <service id="App\Form\Base\UsuarioType" class="App\Form\Base\UsuarioType" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
@@ -645,6 +649,7 @@
         <argument>Symfony\Bridge\Doctrine\Form\Type</argument>
       </argument>
       <argument type="collection">
+        <argument>App\Form\Base\QuantidadeType</argument>
         <argument>App\Form\Base\UsuarioType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\FormType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\ChoiceType</argument>
@@ -885,7 +890,7 @@
       <argument type="service" id="form.registry"/>
     </service>
     <service id="form.extension" class="Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension" public="false">
-      <argument type="service" id=".service_locator.86TQ74b"/>
+      <argument type="service" id=".service_locator.8AK_wjv"/>
       <argument type="collection">
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="iterator">
           <argument type="service" id="form.type_extension.form.transformation_failure_handling"/>
@@ -3477,6 +3482,8 @@
     <service id=".abstract.instanceof.App\DataFixtures\AppFixtures" class="App\DataFixtures\AppFixtures" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\FixturesBundle\ORMFixtureInterface.0.App\DataFixtures\UsuarioFixtures" class="App\DataFixtures\UsuarioFixtures" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\DataFixtures\UsuarioFixtures" class="App\DataFixtures\UsuarioFixtures" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\Base\QuantidadeType" class="App\Form\Base\QuantidadeType" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Form\Base\QuantidadeType" class="App\Form\Base\QuantidadeType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\Base\UsuarioType" class="App\Form\Base\UsuarioType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\Base\UsuarioType" class="App\Form\Base\UsuarioType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\UsuarioRepository" class="App\Repository\UsuarioRepository" autowire="true" abstract="true"/>
@@ -3709,9 +3716,10 @@
       <argument type="service" id="debug.argument_resolver.variadic.inner"/>
       <argument type="service" id="debug.stopwatch"/>
     </service>
-    <service id=".service_locator.86TQ74b" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.8AK_wjv" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
+        <argument key="App\Form\Base\QuantidadeType" type="service" id="App\Form\Base\QuantidadeType"/>
         <argument key="App\Form\Base\UsuarioType" type="service" id="App\Form\Base\UsuarioType"/>
         <argument key="Symfony\Bridge\Doctrine\Form\Type\EntityType" type="service" id="form.type.entity"/>
         <argument key="Symfony\Component\Form\Extension\Core\Type\ChoiceType" type="service" id="form.type.choice"/>
