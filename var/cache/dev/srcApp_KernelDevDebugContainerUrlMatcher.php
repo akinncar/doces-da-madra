@@ -24,6 +24,7 @@ class srcApp_KernelDevDebugContainerUrlMatcher extends Symfony\Bundle\FrameworkB
             '/' => [[['_route' => 'default', '_controller' => 'App\\Controller\\DefaultController::index'], null, null, null, false, false, null]],
             '/login' => [[['_route' => 'app_login', '_controller' => 'App\\Controller\\SecurityController::login'], null, null, null, false, false, null]],
             '/carrinho' => [[['_route' => 'carrinho', '_controller' => 'App\\Controller\\Usuario\\CarrinhoController::index'], null, null, null, false, false, null]],
+            '/finalizar-pedido' => [[['_route' => 'finalizar_pedido', '_controller' => 'App\\Controller\\Usuario\\CarrinhoController::finalizarPedido'], null, null, null, false, false, null]],
         ];
         $this->regexpList = [
             0 => '{^(?'
@@ -44,6 +45,7 @@ class srcApp_KernelDevDebugContainerUrlMatcher extends Symfony\Bundle\FrameworkB
                     .')'
                     .'|/adicionar\\-ao\\-carrinho(?:/([^/]++))?(*:207)'
                     .'|/remover_do_carrinho/([^/]++)(*:244)'
+                    .'|/js/routing(?:\\.(js|json))?(*:279)'
                 .')/?$}sDu',
         ];
         $this->dynamicRoutes = [
@@ -56,6 +58,7 @@ class srcApp_KernelDevDebugContainerUrlMatcher extends Symfony\Bundle\FrameworkB
             159 => [[['_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'], ['token'], null, null, false, true, null]],
             207 => [[['_route' => 'adicionar_carrinho', 'idProduto' => 0, '_controller' => 'App\\Controller\\Usuario\\CarrinhoController::adicionar'], ['idProduto'], null, null, false, true, null]],
             244 => [[['_route' => 'remover_carrinho', '_controller' => 'App\\Controller\\Usuario\\CarrinhoController::remover'], ['idProduto'], null, null, false, true, null]],
+            279 => [[['_route' => 'fos_js_routing_js', '_controller' => 'fos_js_routing.controller::indexAction', '_format' => 'js'], ['_format'], ['GET' => 0], null, false, true, null]],
         ];
     }
 }

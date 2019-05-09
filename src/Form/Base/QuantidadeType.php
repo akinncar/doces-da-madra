@@ -19,6 +19,7 @@ class QuantidadeType extends AbstractType
                 'constraints' => array(new Length(array('min' => 2, 'max' => 3))),
                 'attr' => [
                     'placeholder' => '15',
+                    'class' => 'blue'
                 ]
             ])
 

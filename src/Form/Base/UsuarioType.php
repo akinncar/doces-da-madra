@@ -93,7 +93,7 @@ class UsuarioType extends AbstractType
             ->add('salvar', SubmitType::class, [
                 'label' => 'Cadastrar',
                 'attr' => [
-                    'class' => 'waves-effect waves-light btn'
+                    'class' => 'waves-effect waves-light btn blue'
                 ]
             ])
         ;

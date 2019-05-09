@@ -8,7 +8,6 @@
                 <th>Nome</th>
                 <th>Preço</th>
                 <th>Descrição</th>
-                <th>Teste</th>
                 {% if is_granted('ROLE_USER') %}
                     <th>Opçõe</th>
                 {% endif %}
@@ -20,25 +19,41 @@
                     <td>{{ produto.nome }}</td>
                     <td>R$ {{ produto.precovenda }}</td>
                     <td>{{ produto.descricao }}</td>
-                    <td>Teste</td>
                     {% if is_granted('ROLE_USER') %}
                         <td class="row centered">
-                            {#<form action="" type="POST">#}
-                                {#<input class="col s9" type="number">#}
-                            {#</form>#}
-                            <div class="col s6">
-                                {{ form(form) }}
-                            </div>
-                            {#<a class="btn blue col s2" href="{{ path('adicionar_carrinho', { 'idProduto': produto.id }) }}">#}
-                                {#<i class="material-icons">#}
-                                    {#add_shopping_cart#}
-                                {#</i>#}
-                            {#</a>#}
+                            <form action="" type="POST">
+                                <input id="input-{{ produto.id }}" class="col s9" type="number">
+                            </form>
+                            {#<div class="col s6">#}
+                                {#{{ form_start(form) }}#}
+                                    {#{{ form_row(form.qtd) }}#}
+                                {#{{ form_end(form) }}#}
+                            {#</div>#}
+                            <a onclick="teste({{ produto.id }})" data-target="modal1" class="btn blue" data-id="{{ produto.id }}">
+                                <i class="material-icons">
+                                    add_shopping_cart
+                                </i>
+                            </a>
+
                         </td>
                     {% endif %}
                 </tr>
            {% endfor %}
+
        </tbody>
     </table>
+
+    <script>
+        function teste(id) {
+            var idProduto = id;
+            var qtdProduto = document.getElementById('input-' + id).value;
+            let route = "{{ path('adicionar_carrinho') }}";
+            {#let route = "{{ path('adicionar_carrinho', { 'idProduto': 2, 'qtdProduto': 20 }) }}";#}
+            // route = Routing.generate('adicionar_carrinho', { 'idProduto': 2, 'qtdProduto': 20 });
+            location.href = route + '/' + idProduto + '?qtdProduto=' + qtdProduto ;
+        }
+    </script>
+
 {% endblock %}
+
 

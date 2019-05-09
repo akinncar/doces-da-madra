@@ -25,28 +25,12 @@ class DefaultController extends AbstractController
      * @Route("/", name="default")
      * @Template("index.html.twig")
      */
-    public function index(Request $request, $idProduto = 0) {
-        $form = $this->createForm(QuantidadeType::class);
-        $form->handleRequest($request);
-
+    public function index() {
         $em = $this->getDoctrine()->getManager();
-
         $produtos = $em->getRepository(Produto::class)->findAll();
-
-        if ($form->isSubmitted()) {
-
-            VarDumper::dump( $this->session->set($idProduto, $form["qtd"]->getData()));
-            VarDumper::dump( $this->session->get($idProduto));
-            VarDumper::dump( $this->session->all() );
-            VarDumper::dump('deu certo');
-            die;
-
-            return $this->redirectToRoute('carrinho');
-        }
 
         return[
             'produtos' => $produtos,
-            'form'=> $form->createView(),
         ];
     }
 

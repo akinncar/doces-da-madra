@@ -38,6 +38,8 @@ class srcApp_KernelDevDebugContainerUrlGenerator extends Symfony\Component\Routi
         'carrinho' => [[], ['_controller' => 'App\\Controller\\Usuario\\CarrinhoController::index'], [], [['text', '/carrinho']], [], []],
         'adicionar_carrinho' => [['idProduto'], ['idProduto' => 0, '_controller' => 'App\\Controller\\Usuario\\CarrinhoController::adicionar'], [], [['variable', '/', '[^/]++', 'idProduto', true], ['text', '/adicionar-ao-carrinho']], [], []],
         'remover_carrinho' => [['idProduto'], ['_controller' => 'App\\Controller\\Usuario\\CarrinhoController::remover'], [], [['variable', '/', '[^/]++', 'idProduto', true], ['text', '/remover_do_carrinho']], [], []],
+        'finalizar_pedido' => [[], ['_controller' => 'App\\Controller\\Usuario\\CarrinhoController::finalizarPedido'], [], [['text', '/finalizar-pedido']], [], []],
+        'fos_js_routing_js' => [['_format'], ['_controller' => 'fos_js_routing.controller::indexAction', '_format' => 'js'], ['_format' => 'js|json'], [['variable', '.', 'js|json', '_format', true], ['text', '/js/routing']], [], []],
     ];
         }
     }

@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Usuario as Usuario;
 
 /**
  * Pedido
@@ -50,7 +51,7 @@ class Pedido
     private $obs;
 
     /**
-     * @var \Usuario
+     * @var Usuario
      *
      * @ORM\ManyToOne(targetEntity="Usuario")
      * @ORM\JoinColumns({
@@ -150,18 +151,18 @@ class Pedido
     }
 
     /**
-     * @return \Usuario
+     * @return Usuario
      */
-    public function getIdUsuario(): \Usuario
+    public function getIdUsuario(): Usuario
     {
         return $this->idUsuario;
     }
 
     /**
-     * @param \Usuario $idUsuario
+     * @param Usuario $idUsuario
      * @return Pedido
      */
-    public function setIdUsuario(\Usuario $idUsuario): Pedido
+    public function setIdUsuario(Usuario $idUsuario): Pedido
     {
         $this->idUsuario = $idUsuario;
         return $this;

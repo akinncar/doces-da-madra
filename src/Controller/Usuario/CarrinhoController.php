@@ -8,6 +8,7 @@
 
 namespace App\Controller\Usuario;
 
+use App\Entity\Pedido;
 use App\Entity\Produto;
 use App\Form\Base\QuantidadeType;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -32,7 +33,7 @@ class CarrinhoController extends AbstractController
      * @Template("usuario/carrinho.html.twig")
      */
     public function index() {
-        $carrinhoArray = array();
+        $produtosDoCarrinho = array();
         $currentSession = array();
 
         $em = $this->getDoctrine()->getManager();
@@ -43,40 +44,34 @@ class CarrinhoController extends AbstractController
         foreach ( $currentSessionKey as $produto) {
             $objProduto = $em->getRepository(Produto::class)->find($produto);
             if ($objProduto !== null) {
-                $carrinhoArray[] = $objProduto;
+                $produtosDoCarrinho[] = $objProduto;
             }
         }
 
         return[
-            'produtos' => $carrinhoArray,
+            'produtos' => $produtosDoCarrinho,
             'qtd_produtos' => $currentSession,
         ];
     }
 
     /**
      * @Route("/adicionar-ao-carrinho/{idProduto}", name="adicionar_carrinho")
-     * @Template("helpers/quantidade.html.twig")
+     * @param integer $idProduto
      */
-    public function adicionar(Request $request, $idProduto = 0) {
-//        $form = $this->createForm(QuantidadeType::class);
-//        $form->handleRequest($request);
+    public function adicionar(Request $request, $idProduto = 0 , $qtdProduto = 0) {
+        $idProduto = intval($idProduto);
+        $qtdProduto = intval($request->query->get('qtdProduto'));
+
+//        VarDumper::dump($idProduto);
+//        VarDumper::dump($qtdProduto);
 //
-//        if ($form->isSubmitted()) {
-//
-//            VarDumper::dump( $this->session->set($idProduto, 30));
-//            VarDumper::dump('deu certo');
-//            die;
-//
-//            return $this->redirectToRoute('carrinho');
-//        }
-//
-//        VarDumper::dump($request->getMethod());
-//        VarDumper::dump('n deu certo');
+//        VarDumper::dump( $this->session->set($idProduto, $qtdProduto));
+//        VarDumper::dump( $this->session->all());
 //        die;
 
-//        return [
-//            'form' => $form->createView()
-//        ];
+        $this->session->set($idProduto, $qtdProduto);
+
+        return $this->redirectToRoute('carrinho');
     }
 
     /**
@@ -86,5 +81,49 @@ class CarrinhoController extends AbstractController
         $this->session->remove($idProduto);
 
         return $this->redirectToRoute('carrinho');
+    }
+
+    /**
+     * @Route("/finalizar-pedido", name="finalizar_pedido")
+     */
+    public function finalizarPedido() {
+
+        $produtosDoCarrinho = array();
+        $currentSession = array();
+
+        $em = $this->getDoctrine()->getManager();
+        $pedido = new Pedido();
+
+        $currentSession = $this->session->all();
+        $currentSessionKey = array_keys($currentSession);
+
+        foreach ( $currentSessionKey as $produto) {
+            $objProduto = $em->getRepository(Produto::class)->find($produto);
+            if ($objProduto !== null) {
+                $produtosDoCarrinho[] = $objProduto;
+            }
+        }
+
+        VarDumper::dump($currentSession);
+        VarDumper::dump($produtosDoCarrinho);
+
+        $pedido->setIdUsuario($this->getUser());
+        $pedido->setDataCriacao(new \DateTime(date('d-m-Y')));
+        $pedido->setHoraCriacao(new \DateTime(date('h:i:s')));
+        $pedido->setObs('Essa é uma Observação');
+        $pedido->setValor(567.00);
+
+        foreach ( $produtosDoCarrinho as $produto ) {
+            VarDumper::dump($currentSession[$produto->getId()]);
+
+        }
+
+
+        $em->persist($pedido);
+        $em->flush();
+
+        $this->session->clear();
+
+        return $this->redirectToRoute('default');
     }
 }
