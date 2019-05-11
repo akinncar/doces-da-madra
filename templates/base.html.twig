@@ -16,14 +16,25 @@
                     <a href="#" class="brand-logo">Doces da Madra</a>
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
                         <li><a href="{{ path('default') }}"> Início </a></li>
-                        <li><a href="{{ path('cadastrar_usuario') }}">Cadastrar Usuário</a></li>
+                        {% if not is_granted('ROLE_LOGADO') %}
+                            <li><a href="{{ path('cadastrar_usuario') }}">Cadastrar Usuário</a></li>
+                        {% endif %}
                         {% if is_granted('ROLE_USER') %}
                             <li><a href="{{ path('carrinho') }}">Carrinho</a></li>
                         {% endif %}
                         {% if is_granted('ROLE_ADMIN') %}
-                            <li><a href="{{ path('default') }}">Pedidos</a></li>
+                            <li><a href="{{ path('pedidos_admin') }}">Pedidos</a></li>
                         {% endif %}
+                        {% if is_granted('ROLE_USER') %}
+                            <li><a href="{{ path('pedidos_user') }}">Pedidos</a></li>
+                        {% endif %}
+                        {% if not is_granted('ROLE_LOGADO') %}
                         <li><a href="{{ path('app_login') }}">Entrar</a></li>
+                        {% endif %}
+                        {% if is_granted('ROLE_LOGADO') %}
+                            <li><a href="{{ path('app_logout') }}">Sair</a></li>
+                        {% endif %}
+
                     </ul>
                 </div>
             </nav>

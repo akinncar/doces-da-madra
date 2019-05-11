@@ -8,6 +8,7 @@
 
 namespace App\Controller\Usuario;
 
+use App\Entity\ItemPedido;
 use App\Entity\Pedido;
 use App\Entity\Produto;
 use App\Form\Base\QuantidadeType;
@@ -90,9 +91,9 @@ class CarrinhoController extends AbstractController
 
         $produtosDoCarrinho = array();
         $currentSession = array();
+        $valorFinal = 0;
 
         $em = $this->getDoctrine()->getManager();
-        $pedido = new Pedido();
 
         $currentSession = $this->session->all();
         $currentSessionKey = array_keys($currentSession);
@@ -104,23 +105,45 @@ class CarrinhoController extends AbstractController
             }
         }
 
-        VarDumper::dump($currentSession);
-        VarDumper::dump($produtosDoCarrinho);
+//        VarDumper::dump($currentSession);
+//        VarDumper::dump($produtosDoCarrinho);
+
+        // Inserir tabela Pedidos
+
+        $pedido = new Pedido();
 
         $pedido->setIdUsuario($this->getUser());
         $pedido->setDataCriacao(new \DateTime(date('d-m-Y')));
         $pedido->setHoraCriacao(new \DateTime(date('h:i:s')));
         $pedido->setObs('Essa é uma Observação');
-        $pedido->setValor(567.00);
-
-        foreach ( $produtosDoCarrinho as $produto ) {
-            VarDumper::dump($currentSession[$produto->getId()]);
-
-        }
-
+        $pedido->setValor(00.00);
 
         $em->persist($pedido);
         $em->flush();
+
+        // Inserir tabela item_pedidos
+
+        foreach ( $produtosDoCarrinho as $produto ) {
+            $qtdItem = $currentSession[$produto->getId()];
+            $valorItem = floatval($produto->getPrecoVenda()) * floatval($qtdItem);
+
+            $itemPedido = new ItemPedido();
+            $itemPedido->setIdProduto($produto);
+            $itemPedido->setQtdItemPedido($qtdItem);
+            $itemPedido->setIdPedido($pedido);
+            $itemPedido->setPreco($valorItem);
+
+            $valorFinal += $valorItem;
+
+            $em->persist($itemPedido);
+            $em->flush();
+        }
+
+        $pedido = $pedido->setValor($valorFinal);
+
+        $em->persist($pedido);
+        $em->flush();
+
 
         $this->session->clear();
 

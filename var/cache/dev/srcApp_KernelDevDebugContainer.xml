@@ -273,6 +273,12 @@
     <parameter key="security.authentication.trust_resolver.anonymous_class">null</parameter>
     <parameter key="security.authentication.trust_resolver.rememberme_class">null</parameter>
     <parameter key="security.role_hierarchy.roles" type="collection">
+      <parameter key="ROLE_ADMIN" type="collection">
+        <parameter>ROLE_LOGADO</parameter>
+      </parameter>
+      <parameter key="ROLE_USER" type="collection">
+        <parameter>ROLE_LOGADO</parameter>
+      </parameter>
       <parameter key="ROLE_SUPER_ADMIN" type="collection">
         <parameter>ROLE_ADMIN</parameter>
         <parameter>ROLE_ALLOWED_TO_SWITCH</parameter>
@@ -380,12 +386,26 @@
     <service id="EasyCorp\EasyLog\EasyLogHandler" class="EasyCorp\EasyLog\EasyLogHandler" public="false">
       <argument>/Users/akinncar/Fontes/doces-da-madra/var/log/dev.log</argument>
     </service>
+    <service id="App\Controller\Admin\PedidosController" class="App\Controller\Admin\PedidosController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.KTVqfp6.App\Controller\Admin\PedidosController"/>
+      </call>
+    </service>
     <service id="App\Controller\Base\CadastroController" class="App\Controller\Base\CadastroController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
       <argument type="service" id="security.user_password_encoder.generic"/>
       <call method="setContainer">
         <argument type="service" id=".service_locator.KTVqfp6.App\Controller\Base\CadastroController"/>
+      </call>
+    </service>
+    <service id="App\Controller\Base\PedidosController" class="App\Controller\Base\PedidosController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.KTVqfp6.App\Controller\Base\PedidosController"/>
       </call>
     </service>
     <service id="App\Controller\DefaultController" class="App\Controller\DefaultController" public="true" autowire="true" autoconfigure="true">
@@ -424,6 +444,7 @@
     <service id="App\Form\Base\UsuarioType" class="App\Form\Base\UsuarioType" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
+    <service id="App\Repository\PedidoRepository" class="App\Repository\PedidoRepository" autowire="true" autoconfigure="true"/>
     <service id="App\Repository\UsuarioRepository" class="App\Repository\UsuarioRepository" autowire="true" autoconfigure="true">
       <tag name="doctrine.repository_service"/>
       <argument type="service" id="doctrine"/>
@@ -3662,9 +3683,15 @@
     <service id="fos_js_routing.normalizer.routes_response" class="FOS\JsRoutingBundle\Serializer\Normalizer\RoutesResponseNormalizer" public="false"/>
     <service id="fos_js_routing.denormalizer.route_collection" class="FOS\JsRoutingBundle\Serializer\Denormalizer\RouteCollectionDenormalizer" public="false"/>
     <service id="fos_js_routing.encoder" class="Symfony\Component\Serializer\Encoder\JsonEncoder" public="false"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\Admin\PedidosController" class="App\Controller\Admin\PedidosController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\Admin\PedidosController" class="App\Controller\Admin\PedidosController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\Admin\PedidosController" class="App\Controller\Admin\PedidosController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\Base\CadastroController" class="App\Controller\Base\CadastroController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\Base\CadastroController" class="App\Controller\Base\CadastroController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\Base\CadastroController" class="App\Controller\Base\CadastroController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\Base\PedidosController" class="App\Controller\Base\PedidosController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\Base\PedidosController" class="App\Controller\Base\PedidosController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\Base\PedidosController" class="App\Controller\Base\PedidosController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\DefaultController" class="App\Controller\DefaultController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\DefaultController" class="App\Controller\DefaultController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\DefaultController" class="App\Controller\DefaultController" autowire="true" autoconfigure="true" abstract="true"/>
@@ -4090,9 +4117,21 @@
         <argument key="twig" type="service" id="twig" on-invalid="ignore"/>
       </argument>
     </service>
+    <service id=".service_locator.KTVqfp6.App\Controller\Admin\PedidosController" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator_context" id="App\Controller\Admin\PedidosController"/>
+      <argument>App\Controller\Admin\PedidosController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.KTVqfp6" method="withContext"/>
+    </service>
     <service id=".service_locator.KTVqfp6.App\Controller\Base\CadastroController" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator_context" id="App\Controller\Base\CadastroController"/>
       <argument>App\Controller\Base\CadastroController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.KTVqfp6" method="withContext"/>
+    </service>
+    <service id=".service_locator.KTVqfp6.App\Controller\Base\PedidosController" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator_context" id="App\Controller\Base\PedidosController"/>
+      <argument>App\Controller\Base\PedidosController</argument>
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.KTVqfp6" method="withContext"/>
     </service>

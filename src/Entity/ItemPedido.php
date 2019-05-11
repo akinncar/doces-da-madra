@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Pedido as Pedido;
+use App\Entity\Produto as Produto;
 
 /**
  * ItemPedido
@@ -36,7 +38,7 @@ class ItemPedido
     private $preco;
 
     /**
-     * @var \Pedido
+     * @var Pedido
      *
      * @ORM\ManyToOne(targetEntity="Pedido")
      * @ORM\JoinColumns({
@@ -46,7 +48,7 @@ class ItemPedido
     private $idPedido;
 
     /**
-     * @var \Produto
+     * @var Produto
      *
      * @ORM\ManyToOne(targetEntity="Produto")
      * @ORM\JoinColumns({
@@ -110,36 +112,36 @@ class ItemPedido
     }
 
     /**
-     * @return \Pedido
+     * @return Pedido
      */
-    public function getIdPedido(): \Pedido
+    public function getIdPedido(): Pedido
     {
         return $this->idPedido;
     }
 
     /**
-     * @param \Pedido $idPedido
+     * @param Pedido $idPedido
      * @return ItemPedido
      */
-    public function setIdPedido(\Pedido $idPedido): ItemPedido
+    public function setIdPedido(Pedido $idPedido): ItemPedido
     {
         $this->idPedido = $idPedido;
         return $this;
     }
 
     /**
-     * @return \Produto
+     * @return Produto
      */
-    public function getIdProduto(): \Produto
+    public function getIdProduto(): Produto
     {
         return $this->idProduto;
     }
 
     /**
-     * @param \Produto $idProduto
+     * @param Produto $idProduto
      * @return ItemPedido
      */
-    public function setIdProduto(\Produto $idProduto): ItemPedido
+    public function setIdProduto(Produto $idProduto): ItemPedido
     {
         $this->idProduto = $idProduto;
         return $this;

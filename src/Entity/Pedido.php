@@ -9,7 +9,7 @@ use App\Entity\Usuario as Usuario;
  * Pedido
  *
  * @ORM\Table(name="pedido", indexes={@ORM\Index(name="fk_id_usuario", columns={"id_usuario"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\PedidoRepository")
  */
 class Pedido
 {
