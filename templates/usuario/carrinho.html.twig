@@ -7,17 +7,29 @@
             <thead>
             <tr>
                 <th>Nome</th>
+                <th>Unidade</th>
                 <th>Quantidade</th>
+                <th>Valor</th>
                 <th>Remover</th>
             </tr>
             </thead>
             <tbody>
             {% for produto in produtos %}
                 <tr>
-                    <td>{{ produto.nome }}</td>
+                    <td>
+                        {{ produto.nome }}
+                    </td>
+                    <td>
+                        R$ {{ produto.precoVenda }}
+                    </td>
                     {% for key, qtd in qtd_produtos  %}
                         {% if key is same as (produto.id) %}
                             <td>{{ qtd }}</td>
+                        {% endif %}
+                    {% endfor %}
+                    {% for key, qtd in qtd_produtos  %}
+                        {% if key is same as (produto.id) %}
+                            <td>R$ {{ (qtd * produto.precoVenda)|number_format(2, '.', ',') }}</td>
                         {% endif %}
                     {% endfor %}
                     <td>
@@ -31,8 +43,20 @@
             {% endfor %}
             </tbody>
         </table>
-        <a class="btn light-green right" href="{{ path('finalizar_pedido') }}">Finalizar Pedido</a>
+        <br>
+        <form action="" type="POST" class="right-aligned">
+            Observação: <input id="obs" class="" type="text">
+        </form>
+        <a class="btn light-green right" onclick="finalizarPedido()">Finalizar Pedido</a>
     {% else %}
         <span>Você precisa fazer login no sistema para ter acesso ao carrinho</span>
     {% endif %}
+
+    <script>
+        function finalizarPedido() {
+            var obs = document.getElementById('obs').value;
+            let route = "{{ path('finalizar_pedido') }}";
+            location.href = route + '/' + obs ;
+        }
+    </script>
 {% endblock %}

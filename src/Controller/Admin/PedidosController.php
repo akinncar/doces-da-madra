@@ -9,12 +9,9 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Pedido;
-use App\Entity\Produto;
-use App\Repository\PedidoRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\VarDumper\VarDumper;
 
 class PedidosController extends AbstractController
 {
@@ -26,8 +23,6 @@ class PedidosController extends AbstractController
      */
     public function listarPedidosAdmin()
     {
-        $em = $this->getDoctrine()->getManager();
-//        $pedidos = $em->getRepository(Pedido::class)->findAll();
         $pedidos = $this->getDoctrine()
             ->getRepository(Pedido::class)
             ->findPedidosAdmin();

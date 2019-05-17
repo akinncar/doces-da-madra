@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Pedidos{% endblock %}
+
+{% block body %}
+
+    <h3>Pedido</h3>
+    <span><b>Observação do cliente:</b> {{ itensPedido.0.idPedido.obs }}</span>
+    <br />
+    <table class="centered">
+        <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Preço</th>
+            <th>Descrição</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in itensPedido %}
+            <tr>
+                <td>{{ item.idProduto.nome }}</td>
+                <td>{{ item.idProduto.precoVenda }}</td>
+                <td>{{ item.idProduto.descricao }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

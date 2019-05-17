@@ -6,7 +6,7 @@
  * Time: 20:30
  */
 
-namespace App\Controller\Base;
+namespace App\Controller\Usuario;
 
 use App\Entity\Pedido;
 use App\Entity\Produto;
@@ -25,7 +25,12 @@ class PedidosController extends AbstractController
     public function listarPedidosUsuario()
     {
         $em = $this->getDoctrine()->getManager();
-        $pedidos = $em->getRepository(Pedido::class)->findBy(['idUsuario' => $this->getUser()->getId()]);
+        $pedidos = $em
+            ->getRepository(Pedido::class)
+            ->findBy(
+                ['idUsuario' => $this->getUser()->getId()],
+                ['id' => 'DESC']
+            );
 
         return [
             'pedidos' => $pedidos,

@@ -86,6 +86,7 @@
     <parameter key="kernel.container_class">srcApp_KernelDevDebugContainer</parameter>
     <parameter key="container.dumper.inline_class_loader">true</parameter>
     <parameter key="env(DATABASE_URL)"></parameter>
+    <parameter key="img_directory">/Users/akinncar/Fontes/doces-da-madra/public/images</parameter>
     <parameter key="fragment.renderer.hinclude.global_template"></parameter>
     <parameter key="fragment.path">/_fragment</parameter>
     <parameter key="kernel.secret">%env(APP_SECRET)%</parameter>
@@ -386,6 +387,13 @@
     <service id="EasyCorp\EasyLog\EasyLogHandler" class="EasyCorp\EasyLog\EasyLogHandler" public="false">
       <argument>/Users/akinncar/Fontes/doces-da-madra/var/log/dev.log</argument>
     </service>
+    <service id="App\Controller\Admin\CadastroProdutoController" class="App\Controller\Admin\CadastroProdutoController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.KTVqfp6.App\Controller\Admin\CadastroProdutoController"/>
+      </call>
+    </service>
     <service id="App\Controller\Admin\PedidosController" class="App\Controller\Admin\PedidosController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
@@ -401,11 +409,11 @@
         <argument type="service" id=".service_locator.KTVqfp6.App\Controller\Base\CadastroController"/>
       </call>
     </service>
-    <service id="App\Controller\Base\PedidosController" class="App\Controller\Base\PedidosController" public="true" autowire="true" autoconfigure="true">
+    <service id="App\Controller\Base\PedidoController" class="App\Controller\Base\PedidoController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
       <call method="setContainer">
-        <argument type="service" id=".service_locator.KTVqfp6.App\Controller\Base\PedidosController"/>
+        <argument type="service" id=".service_locator.KTVqfp6.App\Controller\Base\PedidoController"/>
       </call>
     </service>
     <service id="App\Controller\DefaultController" class="App\Controller\DefaultController" public="true" autowire="true" autoconfigure="true">
@@ -431,6 +439,13 @@
         <argument type="service" id=".service_locator.KTVqfp6.App\Controller\Usuario\CarrinhoController"/>
       </call>
     </service>
+    <service id="App\Controller\Usuario\PedidosController" class="App\Controller\Usuario\PedidosController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.KTVqfp6.App\Controller\Usuario\PedidosController"/>
+      </call>
+    </service>
     <service id="App\DataFixtures\AppFixtures" class="App\DataFixtures\AppFixtures" autowire="true" autoconfigure="true">
       <tag name="doctrine.fixture.orm"/>
       <argument type="service" id="security.user_password_encoder.generic"/>
@@ -438,12 +453,16 @@
     <service id="App\DataFixtures\UsuarioFixtures" class="App\DataFixtures\UsuarioFixtures" autowire="true" autoconfigure="true">
       <tag name="doctrine.fixture.orm"/>
     </service>
+    <service id="App\Form\Admin\CadastroProdutoType" class="App\Form\Admin\CadastroProdutoType" autowire="true" autoconfigure="true">
+      <tag name="form.type"/>
+    </service>
     <service id="App\Form\Base\QuantidadeType" class="App\Form\Base\QuantidadeType" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
     <service id="App\Form\Base\UsuarioType" class="App\Form\Base\UsuarioType" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
+    <service id="App\Repository\ItemPedidoRepository" class="App\Repository\ItemPedidoRepository" autowire="true" autoconfigure="true"/>
     <service id="App\Repository\PedidoRepository" class="App\Repository\PedidoRepository" autowire="true" autoconfigure="true"/>
     <service id="App\Repository\UsuarioRepository" class="App\Repository\UsuarioRepository" autowire="true" autoconfigure="true">
       <tag name="doctrine.repository_service"/>
@@ -681,10 +700,12 @@
       <argument type="service" id="form.registry"/>
       <argument type="collection">
         <argument>Symfony\Component\Form\Extension\Core\Type</argument>
+        <argument>App\Form\Admin</argument>
         <argument>App\Form\Base</argument>
         <argument>Symfony\Bridge\Doctrine\Form\Type</argument>
       </argument>
       <argument type="collection">
+        <argument>App\Form\Admin\CadastroProdutoType</argument>
         <argument>App\Form\Base\QuantidadeType</argument>
         <argument>App\Form\Base\UsuarioType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\FormType</argument>
@@ -926,7 +947,7 @@
       <argument type="service" id="form.registry"/>
     </service>
     <service id="form.extension" class="Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension" public="false">
-      <argument type="service" id=".service_locator.8AK_wjv"/>
+      <argument type="service" id=".service_locator..i7MIIi"/>
       <argument type="collection">
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="iterator">
           <argument type="service" id="form.type_extension.form.transformation_failure_handling"/>
@@ -3683,15 +3704,18 @@
     <service id="fos_js_routing.normalizer.routes_response" class="FOS\JsRoutingBundle\Serializer\Normalizer\RoutesResponseNormalizer" public="false"/>
     <service id="fos_js_routing.denormalizer.route_collection" class="FOS\JsRoutingBundle\Serializer\Denormalizer\RouteCollectionDenormalizer" public="false"/>
     <service id="fos_js_routing.encoder" class="Symfony\Component\Serializer\Encoder\JsonEncoder" public="false"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\Admin\CadastroProdutoController" class="App\Controller\Admin\CadastroProdutoController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\Admin\CadastroProdutoController" class="App\Controller\Admin\CadastroProdutoController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\Admin\CadastroProdutoController" class="App\Controller\Admin\CadastroProdutoController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\Admin\PedidosController" class="App\Controller\Admin\PedidosController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\Admin\PedidosController" class="App\Controller\Admin\PedidosController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\Admin\PedidosController" class="App\Controller\Admin\PedidosController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\Base\CadastroController" class="App\Controller\Base\CadastroController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\Base\CadastroController" class="App\Controller\Base\CadastroController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\Base\CadastroController" class="App\Controller\Base\CadastroController" autowire="true" autoconfigure="true" abstract="true"/>
-    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\Base\PedidosController" class="App\Controller\Base\PedidosController" autowire="true" abstract="true"/>
-    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\Base\PedidosController" class="App\Controller\Base\PedidosController" autowire="true" abstract="true"/>
-    <service id=".abstract.instanceof.App\Controller\Base\PedidosController" class="App\Controller\Base\PedidosController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\Base\PedidoController" class="App\Controller\Base\PedidoController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\Base\PedidoController" class="App\Controller\Base\PedidoController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\Base\PedidoController" class="App\Controller\Base\PedidoController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\DefaultController" class="App\Controller\DefaultController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\DefaultController" class="App\Controller\DefaultController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\DefaultController" class="App\Controller\DefaultController" autowire="true" autoconfigure="true" abstract="true"/>
@@ -3701,10 +3725,15 @@
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\Usuario\CarrinhoController" class="App\Controller\Usuario\CarrinhoController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\Usuario\CarrinhoController" class="App\Controller\Usuario\CarrinhoController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\Usuario\CarrinhoController" class="App\Controller\Usuario\CarrinhoController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\Usuario\PedidosController" class="App\Controller\Usuario\PedidosController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\Usuario\PedidosController" class="App\Controller\Usuario\PedidosController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\Usuario\PedidosController" class="App\Controller\Usuario\PedidosController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\FixturesBundle\ORMFixtureInterface.0.App\DataFixtures\AppFixtures" class="App\DataFixtures\AppFixtures" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\DataFixtures\AppFixtures" class="App\DataFixtures\AppFixtures" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\FixturesBundle\ORMFixtureInterface.0.App\DataFixtures\UsuarioFixtures" class="App\DataFixtures\UsuarioFixtures" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\DataFixtures\UsuarioFixtures" class="App\DataFixtures\UsuarioFixtures" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\Admin\CadastroProdutoType" class="App\Form\Admin\CadastroProdutoType" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Form\Admin\CadastroProdutoType" class="App\Form\Admin\CadastroProdutoType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\Base\QuantidadeType" class="App\Form\Base\QuantidadeType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\Base\QuantidadeType" class="App\Form\Base\QuantidadeType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\Base\UsuarioType" class="App\Form\Base\UsuarioType" autowire="true" abstract="true"/>
@@ -3939,9 +3968,10 @@
       <argument type="service" id="debug.argument_resolver.variadic.inner"/>
       <argument type="service" id="debug.stopwatch"/>
     </service>
-    <service id=".service_locator.8AK_wjv" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator..i7MIIi" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
+        <argument key="App\Form\Admin\CadastroProdutoType" type="service" id="App\Form\Admin\CadastroProdutoType"/>
         <argument key="App\Form\Base\QuantidadeType" type="service" id="App\Form\Base\QuantidadeType"/>
         <argument key="App\Form\Base\UsuarioType" type="service" id="App\Form\Base\UsuarioType"/>
         <argument key="Symfony\Bridge\Doctrine\Form\Type\EntityType" type="service" id="form.type.entity"/>
@@ -4117,6 +4147,12 @@
         <argument key="twig" type="service" id="twig" on-invalid="ignore"/>
       </argument>
     </service>
+    <service id=".service_locator.KTVqfp6.App\Controller\Admin\CadastroProdutoController" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator_context" id="App\Controller\Admin\CadastroProdutoController"/>
+      <argument>App\Controller\Admin\CadastroProdutoController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.KTVqfp6" method="withContext"/>
+    </service>
     <service id=".service_locator.KTVqfp6.App\Controller\Admin\PedidosController" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator_context" id="App\Controller\Admin\PedidosController"/>
       <argument>App\Controller\Admin\PedidosController</argument>
@@ -4129,9 +4165,9 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.KTVqfp6" method="withContext"/>
     </service>
-    <service id=".service_locator.KTVqfp6.App\Controller\Base\PedidosController" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
-      <tag name="container.service_locator_context" id="App\Controller\Base\PedidosController"/>
-      <argument>App\Controller\Base\PedidosController</argument>
+    <service id=".service_locator.KTVqfp6.App\Controller\Base\PedidoController" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator_context" id="App\Controller\Base\PedidoController"/>
+      <argument>App\Controller\Base\PedidoController</argument>
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.KTVqfp6" method="withContext"/>
     </service>
@@ -4150,6 +4186,12 @@
     <service id=".service_locator.KTVqfp6.App\Controller\Usuario\CarrinhoController" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator_context" id="App\Controller\Usuario\CarrinhoController"/>
       <argument>App\Controller\Usuario\CarrinhoController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.KTVqfp6" method="withContext"/>
+    </service>
+    <service id=".service_locator.KTVqfp6.App\Controller\Usuario\PedidosController" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator_context" id="App\Controller\Usuario\PedidosController"/>
+      <argument>App\Controller\Usuario\PedidosController</argument>
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.KTVqfp6" method="withContext"/>
     </service>

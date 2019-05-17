@@ -8,10 +8,11 @@
     <table class="centered">
         <thead>
         <tr>
-            <th>Código</th>
+            <th>Num. Pedido</th>
             <th>Usuário</th>
             <th>Valor</th>
             <th>Observação</th>
+            <th>Opções</th>
         </tr>
         </thead>
         <tbody>
@@ -21,6 +22,13 @@
                 <td>{{ pedido.idUsuario.nome }}</td>
                 <td>R$ {{ pedido.valor }}</td>
                 <td>{{ pedido.obs }}</td>
+                <td>
+                    <a href="{{ path('pedido', { 'id': pedido.id }) }}">
+                        <i class="material-icons">
+                            visibility
+                        </i>
+                    </a>
+                </td>
             </tr>
         {% endfor %}
         </tbody>

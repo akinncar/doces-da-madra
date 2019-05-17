@@ -10,7 +10,7 @@ use App\Entity\Produto as Produto;
  * ItemPedido
  *
  * @ORM\Table(name="item_pedido", indexes={@ORM\Index(name="fk_id_produto", columns={"id_produto"}), @ORM\Index(name="fk_id_pedido", columns={"id_pedido"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\ItemPedidoRepository")
  */
 class ItemPedido
 {

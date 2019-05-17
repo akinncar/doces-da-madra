@@ -3,7 +3,6 @@
 namespace App\Repository;
 
 use Doctrine\ORM\EntityRepository;
-use App\Entity\Pedido;
 
 class PedidoRepository extends EntityRepository
 {

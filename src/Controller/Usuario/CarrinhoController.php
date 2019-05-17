@@ -85,10 +85,10 @@ class CarrinhoController extends AbstractController
     }
 
     /**
-     * @Route("/finalizar-pedido", name="finalizar_pedido")
+     * @Route("/finalizar-pedido/{obs}", name="finalizar_pedido")
+     * @param string $obs
      */
-    public function finalizarPedido() {
-
+    public function finalizarPedido($obs = "Nenhuma Observação foi adicionada") {
         $produtosDoCarrinho = array();
         $currentSession = array();
         $valorFinal = 0;
@@ -115,7 +115,7 @@ class CarrinhoController extends AbstractController
         $pedido->setIdUsuario($this->getUser());
         $pedido->setDataCriacao(new \DateTime(date('d-m-Y')));
         $pedido->setHoraCriacao(new \DateTime(date('h:i:s')));
-        $pedido->setObs('Essa é uma Observação');
+        $pedido->setObs($obs);
         $pedido->setValor(00.00);
 
         $em->persist($pedido);

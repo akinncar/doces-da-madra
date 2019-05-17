@@ -4,23 +4,29 @@
 
 {% block body %}
 
-    <h3>Pedidos</h3>
+    <h3>Seus pedidos</h3>
     <table class="centered">
         <thead>
         <tr>
-            <th>Id</th>
-            <th>Usuário</th>
-            <th>Valor</th>
+            <th>Num. Pedido</th>
+            <th>Valor Total</th>
             <th>Observação</th>
+            <th>Opções</th>
         </tr>
         </thead>
         <tbody>
         {% for pedido in pedidos %}
             <tr>
                 <td>{{ pedido.id }}</td>
-                <td>Nome do Cara</td>
                 <td>R$ {{ pedido.valor }}</td>
                 <td>{{ pedido.obs }}</td>
+                <td>
+                    <a href="{{ path('pedido', { 'id': pedido.id }) }}">
+                        <i class="material-icons">
+                            visibility
+                        </i>
+                    </a>
+                </td>
             </tr>
         {% endfor %}
         </tbody>

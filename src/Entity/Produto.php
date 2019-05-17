@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Produto
@@ -58,7 +59,7 @@ class Produto
 
     /**
      * @var string|null
-     *
+     * @Assert\NotBlank(message="Please, upload the product brochure as a PDF file.")
      * @ORM\Column(name="img", type="string", length=255, nullable=true)
      */
     private $img;
@@ -84,7 +85,7 @@ class Produto
     /**
      * @return string
      */
-    public function getNome(): string
+    public function getNome()
     {
         return $this->nome;
     }
@@ -102,7 +103,7 @@ class Produto
     /**
      * @return string
      */
-    public function getPrecoCusto(): string
+    public function getPrecoCusto()
     {
         return $this->precoCusto;
     }
@@ -120,7 +121,7 @@ class Produto
     /**
      * @return string
      */
-    public function getPrecoVenda(): string
+    public function getPrecoVenda()
     {
         return $this->precoVenda;
     }
@@ -138,7 +139,7 @@ class Produto
     /**
      * @return int
      */
-    public function getQtdProduto(): int
+    public function getQtdProduto()
     {
         return $this->qtdProduto;
     }
@@ -156,7 +157,7 @@ class Produto
     /**
      * @return string
      */
-    public function getDescricao(): string
+    public function getDescricao()
     {
         return $this->descricao;
     }
@@ -174,7 +175,7 @@ class Produto
     /**
      * @return string|null
      */
-    public function getImg(): ?string
+    public function getImg()
     {
         return $this->img;
     }
@@ -183,7 +184,7 @@ class Produto
      * @param string|null $img
      * @return Produto
      */
-    public function setImg(?string $img): Produto
+    public function setImg($img)
     {
         $this->img = $img;
         return $this;
