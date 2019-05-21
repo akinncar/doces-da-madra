@@ -16,6 +16,6 @@ if (!\class_exists(srcApp_KernelDevDebugContainer::class, false)) {
 
 return new \Container82StyPx\srcApp_KernelDevDebugContainer([
     'container.build_hash' => '82StyPx',
-    'container.build_id' => '2d5d7130',
-    'container.build_time' => 1558053287,
+    'container.build_id' => '80d352b3',
+    'container.build_time' => 1558395353,
 ], __DIR__.\DIRECTORY_SEPARATOR.'Container82StyPx');

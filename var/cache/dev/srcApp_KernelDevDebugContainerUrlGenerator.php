@@ -34,6 +34,8 @@ class srcApp_KernelDevDebugContainerUrlGenerator extends Symfony\Component\Routi
         '_profiler_exception_css' => [['token'], ['_controller' => 'web_profiler.controller.exception::cssAction'], [], [['text', '/exception.css'], ['variable', '/', '[^/]++', 'token', true], ['text', '/_profiler']], [], []],
         'cadastro_produto' => [[], ['_controller' => 'App\\Controller\\Admin\\CadastroProdutoController::index'], [], [['text', '/cadastrar-produto']], [], []],
         'pedidos_admin' => [[], ['_controller' => 'App\\Controller\\Admin\\PedidosController::listarPedidosAdmin'], [], [['text', '/pedidos-geral']], [], []],
+        'status' => [['id'], ['_controller' => 'App\\Controller\\Admin\\PedidosController::status'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/status']], [], []],
+        'status_back' => [['id'], ['_controller' => 'App\\Controller\\Admin\\PedidosController::statusBack'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/status-back']], [], []],
         'cadastrar_usuario' => [[], ['_controller' => 'App\\Controller\\Base\\CadastroController::create'], [], [['text', '/cadastro']], [], []],
         'pedido' => [['id'], ['_controller' => 'App\\Controller\\Base\\PedidoController::viewPedido'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/pedido']], [], []],
         'default' => [[], ['_controller' => 'App\\Controller\\DefaultController::index'], [], [['text', '/']], [], []],

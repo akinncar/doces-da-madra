@@ -105,9 +105,6 @@ class CarrinhoController extends AbstractController
             }
         }
 
-//        VarDumper::dump($currentSession);
-//        VarDumper::dump($produtosDoCarrinho);
-
         // Inserir tabela Pedidos
 
         $pedido = new Pedido();
@@ -115,6 +112,8 @@ class CarrinhoController extends AbstractController
         $pedido->setIdUsuario($this->getUser());
         $pedido->setDataCriacao(new \DateTime(date('d-m-Y')));
         $pedido->setHoraCriacao(new \DateTime(date('h:i:s')));
+        $pedido->setArquivado('N');
+        $pedido->setStatus('1');
         $pedido->setObs($obs);
         $pedido->setValor(00.00);
 

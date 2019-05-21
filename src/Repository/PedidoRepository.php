@@ -16,6 +16,18 @@ class PedidoRepository extends EntityRepository
         ;
     }
 
+    public function findPedidoAdminById($id)
+    {
+        return $this->createQueryBuilder('p')
+            ->join('p.idUsuario','usuario')
+            ->andWhere('p.id = :id')
+            ->orderBy('p.id', 'DESC')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
     /*
     public function findOneBySomeField($value): ?Usuario
     {

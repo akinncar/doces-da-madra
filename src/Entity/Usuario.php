@@ -56,6 +56,31 @@ class Usuario implements UserInterface
     private $telefone;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="telefone2", type="string", length=25, nullable=true)
+     */
+    private $telefon2;
+
+    /**
+     * @return string
+     */
+    public function getTelefon2(): string
+    {
+        return $this->telefon2;
+    }
+
+    /**
+     * @param string $telefon2
+     * @return Usuario
+     */
+    public function setTelefon2(string $telefon2): Usuario
+    {
+        $this->telefon2 = $telefon2;
+        return $this;
+    }
+
+    /**
      * @ORM\Column(type="string")
      */
     private $roles = 'ROLE_USER';
@@ -99,24 +124,6 @@ class Usuario implements UserInterface
 
         return $this;
     }
-
-    /**
-     * @see UserInterface
-     */
-//    public function getRoles(): array
-//    {
-//        $roles = $this->roles;
-//        // guarantee every user at least has ROLE_USER
-//        $roles[] = 'ROLE_USER';
-//
-//        return array_unique($roles);
-//    }
-//
-//    public function setRoles(array $roles): self
-//    {
-//        $this->roles = $roles;
-//        return $this;
-//    }
 
     /**
      * @see UserInterface

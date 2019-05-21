@@ -5,22 +5,29 @@
 {% block body %}
 
     <h3>Pedido</h3>
-    <span><b>Observação do cliente:</b> {{ itensPedido.0.idPedido.obs }}</span>
+    <span><b>Observação do cliente: </b> {{ itensPedido.0.idPedido.obs }}</span>
     <br />
+    <br />
+    <span><b>Preço Total: </b>R$ {{ itensPedido.0.idPedido.valor }}</span>
+    <br />
+    <br />
+
     <table class="centered">
         <thead>
         <tr>
             <th>Nome</th>
-            <th>Preço</th>
             <th>Descrição</th>
+            <th>Preço</th>
+            <th>Quantidade</th>
         </tr>
         </thead>
         <tbody>
         {% for item in itensPedido %}
             <tr>
                 <td>{{ item.idProduto.nome }}</td>
-                <td>{{ item.idProduto.precoVenda }}</td>
                 <td>{{ item.idProduto.descricao }}</td>
+                <td>{{ item.idProduto.precoVenda }}</td>
+                <td>{{ item.qtdItemPedido }}</td>
             </tr>
         {% endfor %}
         </tbody>

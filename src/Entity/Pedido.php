@@ -61,6 +61,54 @@ class Pedido
     private $idUsuario;
 
     /**
+     *
+     * @ORM\Column(name="arquivado", type="string", length=1, nullable=false, options={"fixed" = true})
+     */
+    private $arquivado;
+
+    /**
+     * @return mixed
+     */
+    public function getArquivado()
+    {
+        return $this->arquivado;
+    }
+
+    /**
+     * @param mixed $arquivado
+     * @return Pedido
+     */
+    public function setArquivado($arquivado)
+    {
+        $this->arquivado = $arquivado;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * @param mixed $status
+     * @return Pedido
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+        return $this;
+    }
+
+    /**
+     *
+     * @ORM\Column(name="status", type="string", length=1, nullable=false, options={"fixed" = true})
+     */
+    private $status;
+
+    /**
      * @return int
      */
     public function getId(): int

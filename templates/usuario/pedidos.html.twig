@@ -11,7 +11,8 @@
             <th>Num. Pedido</th>
             <th>Valor Total</th>
             <th>Observação</th>
-            <th>Opções</th>
+            <th>Status</th>
+            <th>Visualizar</th>
         </tr>
         </thead>
         <tbody>
@@ -20,6 +21,13 @@
                 <td>{{ pedido.id }}</td>
                 <td>R$ {{ pedido.valor }}</td>
                 <td>{{ pedido.obs }}</td>
+                {% if pedido.status is same as ('1') %}
+                    <td class="red-text">Aguardando confirmação</td>
+                {% elseif pedido.status is same as ('2') %}
+                    <td class="blue-text">Em preparo</td>
+                {% elseif pedido.status is same as ('3') %}
+                    <td class="green-text">Finalizado</td>
+                {% endif %}
                 <td>
                     <a href="{{ path('pedido', { 'id': pedido.id }) }}">
                         <i class="material-icons">

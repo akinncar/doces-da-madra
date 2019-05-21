@@ -46,11 +46,15 @@ class srcApp_KernelDevDebugContainerUrlMatcher extends Symfony\Bundle\FrameworkB
                             .'|(*:159)'
                         .')'
                     .')'
-                    .'|/pedido/([^/]++)(*:185)'
-                    .'|/adicionar\\-ao\\-carrinho(?:/([^/]++))?(*:231)'
-                    .'|/remover_do_carrinho/([^/]++)(*:268)'
-                    .'|/finalizar\\-pedido(?:/([^/]++))?(*:308)'
-                    .'|/js/routing(?:\\.(js|json))?(*:343)'
+                    .'|/status(?'
+                        .'|/([^/]++)(*:188)'
+                        .'|\\-back/([^/]++)(*:211)'
+                    .')'
+                    .'|/pedido/([^/]++)(*:236)'
+                    .'|/adicionar\\-ao\\-carrinho(?:/([^/]++))?(*:282)'
+                    .'|/remover_do_carrinho/([^/]++)(*:319)'
+                    .'|/finalizar\\-pedido(?:/([^/]++))?(*:359)'
+                    .'|/js/routing(?:\\.(js|json))?(*:394)'
                 .')/?$}sDu',
         ];
         $this->dynamicRoutes = [
@@ -61,11 +65,13 @@ class srcApp_KernelDevDebugContainerUrlMatcher extends Symfony\Bundle\FrameworkB
             136 => [[['_route' => '_profiler_exception', '_controller' => 'web_profiler.controller.exception::showAction'], ['token'], null, null, false, false, null]],
             149 => [[['_route' => '_profiler_exception_css', '_controller' => 'web_profiler.controller.exception::cssAction'], ['token'], null, null, false, false, null]],
             159 => [[['_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'], ['token'], null, null, false, true, null]],
-            185 => [[['_route' => 'pedido', '_controller' => 'App\\Controller\\Base\\PedidoController::viewPedido'], ['id'], null, null, false, true, null]],
-            231 => [[['_route' => 'adicionar_carrinho', 'idProduto' => 0, '_controller' => 'App\\Controller\\Usuario\\CarrinhoController::adicionar'], ['idProduto'], null, null, false, true, null]],
-            268 => [[['_route' => 'remover_carrinho', '_controller' => 'App\\Controller\\Usuario\\CarrinhoController::remover'], ['idProduto'], null, null, false, true, null]],
-            308 => [[['_route' => 'finalizar_pedido', 'obs' => 'Nenhuma Observação foi adicionada', '_controller' => 'App\\Controller\\Usuario\\CarrinhoController::finalizarPedido'], ['obs'], null, null, false, true, null]],
-            343 => [[['_route' => 'fos_js_routing_js', '_controller' => 'fos_js_routing.controller::indexAction', '_format' => 'js'], ['_format'], ['GET' => 0], null, false, true, null]],
+            188 => [[['_route' => 'status', '_controller' => 'App\\Controller\\Admin\\PedidosController::status'], ['id'], null, null, false, true, null]],
+            211 => [[['_route' => 'status_back', '_controller' => 'App\\Controller\\Admin\\PedidosController::statusBack'], ['id'], null, null, false, true, null]],
+            236 => [[['_route' => 'pedido', '_controller' => 'App\\Controller\\Base\\PedidoController::viewPedido'], ['id'], null, null, false, true, null]],
+            282 => [[['_route' => 'adicionar_carrinho', 'idProduto' => 0, '_controller' => 'App\\Controller\\Usuario\\CarrinhoController::adicionar'], ['idProduto'], null, null, false, true, null]],
+            319 => [[['_route' => 'remover_carrinho', '_controller' => 'App\\Controller\\Usuario\\CarrinhoController::remover'], ['idProduto'], null, null, false, true, null]],
+            359 => [[['_route' => 'finalizar_pedido', 'obs' => 'Nenhuma Observação foi adicionada', '_controller' => 'App\\Controller\\Usuario\\CarrinhoController::finalizarPedido'], ['obs'], null, null, false, true, null]],
+            394 => [[['_route' => 'fos_js_routing_js', '_controller' => 'fos_js_routing.controller::indexAction', '_format' => 'js'], ['_format'], ['GET' => 0], null, false, true, null]],
         ];
     }
 }

@@ -12,7 +12,9 @@
             <th>Usuário</th>
             <th>Valor</th>
             <th>Observação</th>
-            <th>Opções</th>
+            <th>Ação Anterior</th>
+            <th>Ação</th>
+            <th>Visualizar</th>
         </tr>
         </thead>
         <tbody>
@@ -22,6 +24,44 @@
                 <td>{{ pedido.idUsuario.nome }}</td>
                 <td>R$ {{ pedido.valor }}</td>
                 <td>{{ pedido.obs }}</td>
+                {% if pedido.status is same as ('1') %}
+                    <td>
+                        <a class="">
+                            <i class="material-icons grey-text">
+                                arrow_back
+                            </i>
+                        </a>
+                    </td>
+                    <td>
+                        <a class="btn blue" href="{{ path('status', { 'id': pedido.id }) }}">
+                            Preparar
+                        </a>
+                    </td>
+                {% elseif pedido.status is same as ('2') %}
+                    <td>
+                        <a class="black-text" href="{{ path('status_back', { 'id': pedido.id }) }}">
+                            <i class="material-icons">
+                                arrow_back
+                            </i>
+                        </a>
+                    </td>
+                    <td>
+                        <a class="btn green" href="{{ path('status', { 'id': pedido.id }) }}">
+                            Finalizar
+                        </a>
+                    </td>
+                {% elseif pedido.status is same as ('3') %}
+                    <td>
+                        <a class="black-text" href="{{ path('status_back', { 'id': pedido.id }) }}">
+                            <i class="material-icons">
+                                arrow_back
+                            </i>
+                        </a>
+                    </td>
+                    <td>
+                        <p class="green-text">Finalizado</p>
+                    </td>
+                {% endif %}
                 <td>
                     <a href="{{ path('pedido', { 'id': pedido.id }) }}">
                         <i class="material-icons">
