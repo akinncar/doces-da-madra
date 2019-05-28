@@ -10,7 +10,6 @@ namespace App\Controller\Base;
 
 use App\Entity\Usuario;
 use App\Form\Base\UsuarioType;
-// use App\Repository\UserRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;

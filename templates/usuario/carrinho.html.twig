@@ -44,10 +44,12 @@
             </tbody>
         </table>
         <br>
-        <form action="" type="POST" class="right-aligned">
-            Observação: <input id="obs" class="" type="text">
-        </form>
-        <a class="btn light-green right" onclick="finalizarPedido()">Finalizar Pedido</a>
+        {#<form action="" type="POST" class="right-aligned">#}
+            {#Observação: <input id="obs" class="" type="text">#}
+        {#</form>#}
+        {#<a class="btn light-green right" onclick="finalizarPedido()">Finalizar Pedido</a>#}
+
+        {{ form(form) }}
     {% else %}
         <span>Você precisa fazer login no sistema para ter acesso ao carrinho</span>
     {% endif %}

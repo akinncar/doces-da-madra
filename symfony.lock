@@ -105,6 +105,9 @@
             "config/packages/dev/easy_log_handler.yaml"
         ]
     },
+    "egulias/email-validator": {
+        "version": "2.1.8"
+    },
     "friendsofsymfony/jsrouting-bundle": {
         "version": "2.3",
         "recipe": {
@@ -116,6 +119,9 @@
         "files": [
             "config/routes/fos_js_routing.yaml"
         ]
+    },
+    "it/input-mask-bundle": {
+        "version": "1.2.0"
     },
     "jdorn/sql-formatter": {
         "version": "v1.2.17"
@@ -155,6 +161,9 @@
         "files": [
             "config/packages/sensio_framework_extra.yaml"
         ]
+    },
+    "swiftmailer/swiftmailer": {
+        "version": "v6.2.1"
     },
     "symfony/asset": {
         "version": "v4.2.8"
@@ -298,6 +307,9 @@
     "symfony/polyfill-intl-icu": {
         "version": "v1.11.0"
     },
+    "symfony/polyfill-intl-idn": {
+        "version": "v1.11.0"
+    },
     "symfony/polyfill-mbstring": {
         "version": "v1.11.0"
     },
@@ -357,6 +369,20 @@
     },
     "symfony/stopwatch": {
         "version": "v4.2.5"
+    },
+    "symfony/swiftmailer-bundle": {
+        "version": "2.5",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "2.5",
+            "ref": "3db029c03e452b4a23f7fc45cec7c922c2247eb8"
+        },
+        "files": [
+            "config/packages/dev/swiftmailer.yaml",
+            "config/packages/swiftmailer.yaml",
+            "config/packages/test/swiftmailer.yaml"
+        ]
     },
     "symfony/twig-bridge": {
         "version": "v4.2.5"

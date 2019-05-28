@@ -60,23 +60,198 @@ class Usuario implements UserInterface
      *
      * @ORM\Column(name="telefone2", type="string", length=25, nullable=true)
      */
-    private $telefon2;
+    private $telefone2;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="estado", type="string", length=2, nullable=false)
+     */
+    private $estado;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cidade", type="string", length=20, nullable=false)
+     */
+    private $cidade;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="rua", type="string", length=30, nullable=false)
+     */
+    private $rua;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="bairro", type="string", length=20, nullable=false)
+     */
+    private $bairro;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cep", type="string", length=20, nullable=false)
+     */
+    private $cep;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="complemento", type="string", length=20, nullable=false)
+     */
+    private $complemento;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="num_residencia", type="string", length=5, nullable=false)
+     */
+    private $numResidencia;
 
     /**
      * @return string
      */
-    public function getTelefon2(): string
+    public function getEstado()
     {
-        return $this->telefon2;
+        return $this->estado;
     }
 
     /**
-     * @param string $telefon2
+     * @param string $estado
      * @return Usuario
      */
-    public function setTelefon2(string $telefon2): Usuario
+    public function setEstado(string $estado): Usuario
     {
-        $this->telefon2 = $telefon2;
+        $this->estado = $estado;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCidade()
+    {
+        return $this->cidade;
+    }
+
+    /**
+     * @param string $cidade
+     * @return Usuario
+     */
+    public function setCidade(string $cidade): Usuario
+    {
+        $this->cidade = $cidade;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRua()
+    {
+        return $this->rua;
+    }
+
+    /**
+     * @param string $rua
+     * @return Usuario
+     */
+    public function setRua(string $rua): Usuario
+    {
+        $this->rua = $rua;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBairro()
+    {
+        return $this->bairro;
+    }
+
+    /**
+     * @param string $bairro
+     * @return Usuario
+     */
+    public function setBairro(string $bairro): Usuario
+    {
+        $this->bairro = $bairro;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCep()
+    {
+        return $this->cep;
+    }
+
+    /**
+     * @param string $cep
+     * @return Usuario
+     */
+    public function setCep(string $cep): Usuario
+    {
+        $this->cep = $cep;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getComplemento()
+    {
+        return $this->complemento;
+    }
+
+    /**
+     * @param string $complemento
+     * @return Usuario
+     */
+    public function setComplemento(string $complemento): Usuario
+    {
+        $this->complemento = $complemento;
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getNumResidencia()
+    {
+        return $this->numResidencia;
+    }
+
+    /**
+     * @param int $numResidencia
+     * @return Usuario
+     */
+    public function setNumResidencia(int $numResidencia): Usuario
+    {
+        $this->numResidencia = $numResidencia;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTelefone2()
+    {
+        return $this->telefone2;
+    }
+
+    /**
+     * @param string $telefone2
+     * @return Usuario
+     */
+    public function setTelefone2(string $telefone2): Usuario
+    {
+        $this->telefone2 = $telefone2;
         return $this;
     }
 

@@ -13,6 +13,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Length;
 
+
 class UsuarioType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -20,7 +21,7 @@ class UsuarioType extends AbstractType
         $builder
             ->add('nome', TextType::class, [
                 'label' => "Nome Completo",
-                'constraints' => array(new Length(array('min' => 6, 'max' => 14))),
+                'constraints' => array(new Length(array('min' => 6, 'max' => 60))),
                 'attr' => [
                     'placeholder' => 'Informe o seu nome',
                     'class' => 'form-control'
@@ -56,18 +57,87 @@ class UsuarioType extends AbstractType
 
             ->add('cpf', TextType::class, [
                 'label' => "CPF",
-                'constraints' => array(new Length(array('min' => 6, 'max' => 14))),
                 'attr' => [
+                    'class' => 'form-control',
                     'placeholder' => 'Informe seu cpf',
-                    'class' => 'form-control'
                 ]
             ])
 
             ->add('telefone', NumberType::class, [
                 'label' => "Telefone",
-                'constraints' => array(new Length(array('min' => 6, 'max' => 14))),
+                'constraints' => array(new Length(array('min' => 8, 'max' => 14))),
                 'attr' => [
                     'placeholder' => 'Informe seu telefone para contato',
+                    'class' => 'form-control'
+                ]
+            ])
+
+            ->add('telefone2', NumberType::class, [
+                'label' => "Segundo Telefone",
+                'attr' => [
+                    'placeholder' => 'Informe um contato reserva',
+                    'class' => 'form-control'
+                ]
+            ])
+
+            ->add('estado', TextType::class, [
+                'label' => "Estado",
+                'constraints' => array(new Length(array('min' => 2, 'max' => 2))),
+                'attr' => [
+                    'placeholder' => 'Informe seu telefone para contato',
+                    'class' => 'form-control'
+                ]
+            ])
+
+            ->add('cidade', TextType::class, [
+                'label' => "Cidade",
+                'constraints' => array(new Length(array('min' => 2, 'max' => 20))),
+                'attr' => [
+                    'placeholder' => 'Informe sua cidade',
+                    'class' => 'form-control'
+                ]
+            ])
+
+            ->add('rua', TextType::class, [
+                'label' => "Rua",
+                'constraints' => array(new Length(array('min' => 6, 'max' => 30))),
+                'attr' => [
+                    'placeholder' => 'Informe sua rua',
+                    'class' => 'form-control'
+                ]
+            ])
+
+            ->add('bairro', TextType::class, [
+                'label' => "Bairro",
+                'constraints' => array(new Length(array('min' => 4, 'max' => 20))),
+                'attr' => [
+                    'placeholder' => 'Informe seu bairro',
+                    'class' => 'form-control'
+                ]
+            ])
+
+            ->add('cep', TextType::class, [
+                'label' => "CEP",
+                'constraints' => array(new Length(array('min' => 6, 'max' => 20))),
+                'attr' => [
+                    'placeholder' => 'Informe o seu CEP',
+                    'class' => 'form-control',
+                ]
+            ])
+
+            ->add('complemento', TextType::class, [
+                'label' => "Complemento",
+                'attr' => [
+                    'placeholder' => 'Informe o complemento de sua residência',
+                    'class' => 'form-control'
+                ]
+            ])
+
+            ->add('num_residencia', TextType::class, [
+                'label' => "Número Residencial",
+                'constraints' => array(new Length(array('min' => 1, 'max' => 5))),
+                'attr' => [
+                    'placeholder' => 'Informe o número de sua residência',
                     'class' => 'form-control'
                 ]
             ])

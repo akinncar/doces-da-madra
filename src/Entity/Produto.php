@@ -65,6 +65,30 @@ class Produto
     private $img;
 
     /**
+     *
+     * @ORM\Column(name="arquivado", type="string", length=1, nullable=false, options={"fixed" = true})
+     */
+    private $arquivado;
+
+    /**
+     * @return mixed
+     */
+    public function getArquivado()
+    {
+        return $this->arquivado;
+    }
+
+    /**
+     * @param mixed $arquivado
+     * @return Produto
+     */
+    public function setArquivado($arquivado)
+    {
+        $this->arquivado = $arquivado;
+        return $this;
+    }
+
+    /**
      * @return int
      */
     public function getId(): int

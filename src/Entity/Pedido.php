@@ -61,28 +61,78 @@ class Pedido
     private $idUsuario;
 
     /**
+     * @var \DateTime
      *
-     * @ORM\Column(name="arquivado", type="string", length=1, nullable=false, options={"fixed" = true})
+     * @ORM\Column(name="data_entrega", type="date")
      */
-    private $arquivado;
+    private $dataEntrega;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="hora_entrega", type="time")
+     */
+    private $horaEntrega;
+
+    /**
+     * @return \DateTime
+     */
+    public function getDataEntrega(): \DateTime
+    {
+        return $this->dataEntrega;
+    }
+
+    /**
+     * @param \DateTime $dataEntrega
+     * @return Pedido
+     */
+    public function setDataEntrega(\DateTime $dataEntrega): Pedido
+    {
+        $this->dataEntrega = $dataEntrega;
+        return $this;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getHoraEntrega(): \DateTime
+    {
+        return $this->horaEntrega;
+    }
+
+    /**
+     * @param \DateTime $horaEntrega
+     * @return Pedido
+     */
+    public function setHoraEntrega(\DateTime $horaEntrega): Pedido
+    {
+        $this->horaEntrega = $horaEntrega;
+        return $this;
+    }
 
     /**
      * @return mixed
      */
-    public function getArquivado()
+    public function getMetodoEntrega()
     {
-        return $this->arquivado;
+        return $this->metodoEntrega;
     }
 
     /**
-     * @param mixed $arquivado
+     * @param mixed $metodoEntrega
      * @return Pedido
      */
-    public function setArquivado($arquivado)
+    public function setMetodoEntrega($metodoEntrega)
     {
-        $this->arquivado = $arquivado;
+        $this->metodoEntrega = $metodoEntrega;
         return $this;
     }
+
+    /**
+     *
+     * @ORM\Column(name="metodo_entrega", type="string", length=1, nullable=false, options={"fixed" = true})
+     */
+    private $metodoEntrega;
 
     /**
      * @return mixed

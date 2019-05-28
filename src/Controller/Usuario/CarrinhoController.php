@@ -19,6 +19,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\VarDumper\VarDumper;
 use Symfony\Component\HttpFoundation\Request;
+use App\Form\Usuario\CarrinhoType;
 
 class CarrinhoController extends AbstractController
 {
@@ -33,9 +34,17 @@ class CarrinhoController extends AbstractController
      * @Route("/carrinho", name="carrinho")
      * @Template("usuario/carrinho.html.twig")
      */
-    public function index() {
+    public function index(Request $request) {
         $produtosDoCarrinho = array();
         $currentSession = array();
+
+        date_default_timezone_set('America/Sao_Paulo');
+
+        $pedido = new Pedido();
+        $pedido->setDataEntrega(new \DateTime(date('d-m-Y')));
+        $pedido->setHoraEntrega(new \DateTime(date('h:i:s')));
+        $form = $this->createForm(CarrinhoType::class, $pedido);
+        $form->handleRequest($request);
 
         $em = $this->getDoctrine()->getManager();
 
@@ -49,9 +58,70 @@ class CarrinhoController extends AbstractController
             }
         }
 
+        if ($form->isSubmitted() && $form->isValid()) {
+            $produtosDoCarrinho = array();
+            $currentSession = array();
+            $valorFinal = 0;
+
+            $em = $this->getDoctrine()->getManager();
+
+            $currentSession = $this->session->all();
+            $currentSessionKey = array_keys($currentSession);
+
+            foreach ( $currentSessionKey as $produto ) {
+                $objProduto = $em->getRepository(Produto::class)->find($produto);
+                if ($objProduto !== null) {
+                    $produtosDoCarrinho[] = $objProduto;
+                }
+            }
+
+            // Inserir tabela Pedidos
+
+
+            $pedido->setIdUsuario($this->getUser());
+            $pedido->setDataCriacao(new \DateTime(date('d-m-Y')));
+            $pedido->setHoraCriacao(new \DateTime(date('h:i:s')));
+            $pedido->setStatus('1');
+            $pedido->setValor(00.00);
+
+            $em->persist($pedido);
+            $em->flush();
+
+            // Inserir tabela item_pedidos
+
+            foreach ( $produtosDoCarrinho as $produto ) {
+                $qtdItem = $currentSession[$produto->getId()];
+                $valorItem = floatval($produto->getPrecoVenda()) * floatval($qtdItem);
+
+                $itemPedido = new ItemPedido();
+                $itemPedido->setIdProduto($produto);
+                $itemPedido->setQtdItemPedido($qtdItem);
+                $itemPedido->setIdPedido($pedido);
+                $itemPedido->setPreco($valorItem);
+
+                $valorFinal += $valorItem;
+
+                $em->persist($itemPedido);
+                $em->flush();
+            }
+
+            $pedido = $pedido->setValor($valorFinal);
+
+
+            $em = $this->getDoctrine()->getManager();
+
+            $em->persist($pedido);
+            $em->flush();
+
+            $this->session->clear();
+
+            return $this->redirectToRoute('pedidos_user');
+        }
+
         return[
             'produtos' => $produtosDoCarrinho,
             'qtd_produtos' => $currentSession,
+            'form'=> $form->createView(),
         ];
     }
 
@@ -62,13 +132,6 @@ class CarrinhoController extends AbstractController
     public function adicionar(Request $request, $idProduto = 0 , $qtdProduto = 0) {
         $idProduto = intval($idProduto);
         $qtdProduto = intval($request->query->get('qtdProduto'));
-
-//        VarDumper::dump($idProduto);
-//        VarDumper::dump($qtdProduto);
-//
-//        VarDumper::dump( $this->session->set($idProduto, $qtdProduto));
-//        VarDumper::dump( $this->session->all());
-//        die;
 
         $this->session->set($idProduto, $qtdProduto);
 
@@ -89,63 +152,63 @@ class CarrinhoController extends AbstractController
      * @param string $obs
      */
     public function finalizarPedido($obs = "Nenhuma Observação foi adicionada") {
-        $produtosDoCarrinho = array();
-        $currentSession = array();
-        $valorFinal = 0;
-
-        $em = $this->getDoctrine()->getManager();
-
-        $currentSession = $this->session->all();
-        $currentSessionKey = array_keys($currentSession);
-
-        foreach ( $currentSessionKey as $produto) {
-            $objProduto = $em->getRepository(Produto::class)->find($produto);
-            if ($objProduto !== null) {
-                $produtosDoCarrinho[] = $objProduto;
-            }
-        }
-
-        // Inserir tabela Pedidos
-
-        $pedido = new Pedido();
-
-        $pedido->setIdUsuario($this->getUser());
-        $pedido->setDataCriacao(new \DateTime(date('d-m-Y')));
-        $pedido->setHoraCriacao(new \DateTime(date('h:i:s')));
-        $pedido->setArquivado('N');
-        $pedido->setStatus('1');
-        $pedido->setObs($obs);
-        $pedido->setValor(00.00);
-
-        $em->persist($pedido);
-        $em->flush();
-
-        // Inserir tabela item_pedidos
-
-        foreach ( $produtosDoCarrinho as $produto ) {
-            $qtdItem = $currentSession[$produto->getId()];
-            $valorItem = floatval($produto->getPrecoVenda()) * floatval($qtdItem);
-
-            $itemPedido = new ItemPedido();
-            $itemPedido->setIdProduto($produto);
-            $itemPedido->setQtdItemPedido($qtdItem);
-            $itemPedido->setIdPedido($pedido);
-            $itemPedido->setPreco($valorItem);
-
-            $valorFinal += $valorItem;
-
-            $em->persist($itemPedido);
-            $em->flush();
-        }
-
-        $pedido = $pedido->setValor($valorFinal);
-
-        $em->persist($pedido);
-        $em->flush();
-
-
-        $this->session->clear();
-
-        return $this->redirectToRoute('default');
+//        $produtosDoCarrinho = array();
+//        $currentSession = array();
+//        $valorFinal = 0;
+//
+//        $em = $this->getDoctrine()->getManager();
+//
+//        $currentSession = $this->session->all();
+//        $currentSessionKey = array_keys($currentSession);
+//
+//        foreach ( $currentSessionKey as $produto ) {
+//            $objProduto = $em->getRepository(Produto::class)->find($produto);
+//            if ($objProduto !== null) {
+//                $produtosDoCarrinho[] = $objProduto;
+//            }
+//        }
+//
+//        // Inserir tabela Pedidos
+//
+//        $pedido = new Pedido();
+//
+//        $pedido->setIdUsuario($this->getUser());
+//        $pedido->setDataCriacao(new \DateTime(date('d-m-Y')));
+//        $pedido->setHoraCriacao(new \DateTime(date('h:i:s')));
+//        $pedido->setArquivado('N');
+//        $pedido->setStatus('1');
+//        $pedido->setObs($obs);
+//        $pedido->setValor(00.00);
+//
+//        $em->persist($pedido);
+//        $em->flush();
+//
+//        // Inserir tabela item_pedidos
+//
+//        foreach ( $produtosDoCarrinho as $produto ) {
+//            $qtdItem = $currentSession[$produto->getId()];
+//            $valorItem = floatval($produto->getPrecoVenda()) * floatval($qtdItem);
+//
+//            $itemPedido = new ItemPedido();
+//            $itemPedido->setIdProduto($produto);
+//            $itemPedido->setQtdItemPedido($qtdItem);
+//            $itemPedido->setIdPedido($pedido);
+//            $itemPedido->setPreco($valorItem);
+//
+//            $valorFinal += $valorItem;
+//
+//            $em->persist($itemPedido);
+//            $em->flush();
+//        }
+//
+//        $pedido = $pedido->setValor($valorFinal);
+//
+//        $em->persist($pedido);
+//        $em->flush();
+//
+//
+//        $this->session->clear();
+//
+//        return $this->redirectToRoute('default');
     }
 }
