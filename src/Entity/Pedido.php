@@ -63,14 +63,14 @@ class Pedido
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="data_entrega", type="date")
+     * @ORM\Column(name="data_entrega", type="date", nullable=true)
      */
     private $dataEntrega;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="hora_entrega", type="time")
+     * @ORM\Column(name="hora_entrega", type="time", nullable=true)
      */
     private $horaEntrega;
 

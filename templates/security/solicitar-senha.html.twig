@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block body %}
+    <h3 class="h3 mb-3 font-weight-normal">Digite seu e-mail para solicitar uma nova senha</h3>
+    <input id="email" type="email" class="form-control" placeholder="E-mail" required>
+    <a class="btn blue" onclick="enviarEmail()">Enviar e-mail</a>
+
+    <script>
+        function enviarEmail() {
+            var email = document.getElementById('email').value;
+            let route = "{{ path('verificar_email') }}";
+            location.href = route + '/' + email ;
+        }
+    </script>
+{% endblock %}

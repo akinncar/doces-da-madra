@@ -5,6 +5,33 @@
 {% block body %}
 
     <h3>Pedido</h3>
+    <span><b>Comprador: </b>{{ itensPedido.0.idPedido.idUsuario.nome }}</span>
+    <br />
+    <br />
+    <span><b>Endereço: </b>{{ itensPedido.0.idPedido.idUsuario.cidade|capitalize }}, {{ itensPedido.0.idPedido.idUsuario.estado|upper }} - {{ itensPedido.0.idPedido.idUsuario.rua|capitalize }}: {{ itensPedido.0.idPedido.idUsuario.numResidencia }}</span>
+    <br />
+    <br />
+    <span><b>Bairro: </b>{{ itensPedido.0.idPedido.idUsuario.bairro|capitalize }}</span>
+    <br />
+    <br />
+    <span><b>CEP: </b>{{ itensPedido.0.idPedido.idUsuario.cep }}</span>
+    <br />
+    <br />
+    <span><b>Data de entrega: </b>{{ itensPedido.0.idPedido.dataEntrega|date("d/m/Y") }}</span>
+    <br />
+    <br />
+    <span><b>Hora de entrega: </b>{{ itensPedido.0.idPedido.horaEntrega|date("g:i a") }}</span>
+    <br />
+    <br />
+    <span><b>Método de entrega: </b>
+        {% if itensPedido.0.idPedido.metodoEntrega is same as(0) %}
+            Entrega a domicílio
+        {% else %}
+            Retirar no local
+        {% endif %}
+    </span>
+    <br />
+    <br />
     <span><b>Observação do cliente: </b> {{ itensPedido.0.idPedido.obs }}</span>
     <br />
     <br />

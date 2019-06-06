@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Código de comfirmação{% endblock %}
+
+{% block body %}
+    <h3 class="h3 mb-3 font-weight-normal">Digite o código recebido em seu e-mail</h3>
+    <input id="codigo" type="text" class="form-control" placeholder="Código de confirmação" required>
+    <a class="btn blue" onclick="verificarCodigo()">Confirmar</a>
+
+    <script>
+        function verificarCodigo() {
+            var codigo = document.getElementById('codigo').value;
+            let route = "{{ path('verificar_codigo') }}";
+            location.href = route + '/' + codigo ;
+        }
+    </script>
+{% endblock %}

@@ -45,6 +45,7 @@ class CadastroProdutoController extends AbstractController
             }
 
             $produto->setImg($fileName);
+            $produto->setArquivado(0);
 
             $em = $this->getDoctrine()->getManager();
 

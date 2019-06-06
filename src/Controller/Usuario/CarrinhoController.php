@@ -116,6 +116,7 @@ class CarrinhoController extends AbstractController
             $this->session->clear();
 
             return $this->redirectToRoute('pedidos_user');
+
         }
 
         return[

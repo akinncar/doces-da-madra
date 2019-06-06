@@ -26,6 +26,7 @@ class srcApp_KernelDevDebugContainerUrlMatcher extends Symfony\Bundle\FrameworkB
             '/' => [[['_route' => 'default', '_controller' => 'App\\Controller\\DefaultController::index'], null, null, null, false, false, null]],
             '/login' => [[['_route' => 'app_login', '_controller' => 'App\\Controller\\SecurityController::login'], null, null, null, false, false, null]],
             '/logout' => [[['_route' => 'app_logout', '_controller' => 'App\\Controller\\SecurityController::logout'], null, ['GET' => 0], null, false, false, null]],
+            '/solicitar-senha' => [[['_route' => 'solicitar_senha', '_controller' => 'App\\Controller\\SecurityController::solicitarSenha'], null, null, null, false, false, null]],
             '/carrinho' => [[['_route' => 'carrinho', '_controller' => 'App\\Controller\\Usuario\\CarrinhoController::index'], null, null, null, false, false, null]],
             '/pedidos' => [[['_route' => 'pedidos_user', '_controller' => 'App\\Controller\\Usuario\\PedidosController::listarPedidosUsuario'], null, null, null, false, false, null]],
         ];
@@ -51,10 +52,17 @@ class srcApp_KernelDevDebugContainerUrlMatcher extends Symfony\Bundle\FrameworkB
                         .'|\\-back/([^/]++)(*:211)'
                     .')'
                     .'|/pedido/([^/]++)(*:236)'
-                    .'|/adicionar\\-ao\\-carrinho(?:/([^/]++))?(*:282)'
-                    .'|/remover_do_carrinho/([^/]++)(*:319)'
-                    .'|/finalizar\\-pedido(?:/([^/]++))?(*:359)'
-                    .'|/js/routing(?:\\.(js|json))?(*:394)'
+                    .'|/verificar\\-(?'
+                        .'|email(?:/([^/]++))?(*:278)'
+                        .'|codigo(?:/([^/]++))?(*:306)'
+                    .')'
+                    .'|/re(?'
+                        .'|cuperar\\-senha(?:/([^/]++))?(*:349)'
+                        .'|mover_do_carrinho/([^/]++)(*:383)'
+                    .')'
+                    .'|/adicionar\\-ao\\-carrinho(?:/([^/]++))?(*:430)'
+                    .'|/finalizar\\-pedido(?:/([^/]++))?(*:470)'
+                    .'|/js/routing(?:\\.(js|json))?(*:505)'
                 .')/?$}sDu',
         ];
         $this->dynamicRoutes = [
@@ -68,10 +76,13 @@ class srcApp_KernelDevDebugContainerUrlMatcher extends Symfony\Bundle\FrameworkB
             188 => [[['_route' => 'status', '_controller' => 'App\\Controller\\Admin\\PedidosController::status'], ['id'], null, null, false, true, null]],
             211 => [[['_route' => 'status_back', '_controller' => 'App\\Controller\\Admin\\PedidosController::statusBack'], ['id'], null, null, false, true, null]],
             236 => [[['_route' => 'pedido', '_controller' => 'App\\Controller\\Base\\PedidoController::viewPedido'], ['id'], null, null, false, true, null]],
-            282 => [[['_route' => 'adicionar_carrinho', 'idProduto' => 0, '_controller' => 'App\\Controller\\Usuario\\CarrinhoController::adicionar'], ['idProduto'], null, null, false, true, null]],
-            319 => [[['_route' => 'remover_carrinho', '_controller' => 'App\\Controller\\Usuario\\CarrinhoController::remover'], ['idProduto'], null, null, false, true, null]],
-            359 => [[['_route' => 'finalizar_pedido', 'obs' => 'Nenhuma Observação foi adicionada', '_controller' => 'App\\Controller\\Usuario\\CarrinhoController::finalizarPedido'], ['obs'], null, null, false, true, null]],
-            394 => [[['_route' => 'fos_js_routing_js', '_controller' => 'fos_js_routing.controller::indexAction', '_format' => 'js'], ['_format'], ['GET' => 0], null, false, true, null]],
+            278 => [[['_route' => 'verificar_email', 'email' => '', '_controller' => 'App\\Controller\\SecurityController::verificarEmail'], ['email'], null, null, false, true, null]],
+            306 => [[['_route' => 'verificar_codigo', 'codigo' => 0, '_controller' => 'App\\Controller\\SecurityController::verificarCodigo'], ['codigo'], null, null, false, true, null]],
+            349 => [[['_route' => 'recuperar_senha', 'codigo' => 0, '_controller' => 'App\\Controller\\SecurityController::recuperarSenha'], ['codigo'], null, null, false, true, null]],
+            383 => [[['_route' => 'remover_carrinho', '_controller' => 'App\\Controller\\Usuario\\CarrinhoController::remover'], ['idProduto'], null, null, false, true, null]],
+            430 => [[['_route' => 'adicionar_carrinho', 'idProduto' => 0, '_controller' => 'App\\Controller\\Usuario\\CarrinhoController::adicionar'], ['idProduto'], null, null, false, true, null]],
+            470 => [[['_route' => 'finalizar_pedido', 'obs' => 'Nenhuma Observação foi adicionada', '_controller' => 'App\\Controller\\Usuario\\CarrinhoController::finalizarPedido'], ['obs'], null, null, false, true, null]],
+            505 => [[['_route' => 'fos_js_routing_js', '_controller' => 'fos_js_routing.controller::indexAction', '_format' => 'js'], ['_format'], ['GET' => 0], null, false, true, null]],
         ];
     }
 }

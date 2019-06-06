@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block body %}
+    <h3 class="h3 mb-3 font-weight-normal">Digite sua nova senha</h3>
+    {{ form_start(form) }}
+        {{  form_row(form.password) }}
+        {{  form_row(form.salvar, { 'label': 'Alterar Senha' }) }}
+    {{ form_end(form, {'render_rest': false}) }}
+{% endblock %}

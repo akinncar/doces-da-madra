@@ -12,6 +12,7 @@ class ItemPedidoRepository extends EntityRepository
             ->addSelect('pedido')
             ->addSelect('produto')
             ->innerJoin('i.idPedido','pedido')
+            ->innerJoin('pedido.idUsuario','usuario')
             ->innerJoin('i.idProduto','produto')
             ->orderBy('i.id', 'DESC')
             ->andWhere('i.idPedido = :pedidoId')

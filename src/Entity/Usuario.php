@@ -112,6 +112,56 @@ class Usuario implements UserInterface
     private $numResidencia;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="codigo_recuperacao", type="string", nullable=true)
+     */
+    private $codigoRecuperacao;
+
+    /**
+     * @return string
+     */
+    public function getCodigoRecuperacao(): string
+    {
+        return $this->codigoRecuperacao;
+    }
+
+    /**
+     * @param string $codigoRecuperacao
+     * @return Usuario
+     */
+    public function setCodigoRecuperacao(string $codigoRecuperacao)
+    {
+        $this->codigoRecuperacao = $codigoRecuperacao;
+        return $this;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getDataRecuperacao(): \DateTime
+    {
+        return $this->dataRecuperacao;
+    }
+
+    /**
+     * @param \DateTime $dataRecuperacao
+     * @return Usuario
+     */
+    public function setDataRecuperacao(\DateTime $dataRecuperacao): Usuario
+    {
+        $this->dataRecuperacao = $dataRecuperacao;
+        return $this;
+    }
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="data_recuperacao", type="date", nullable=true)
+     */
+    private $dataRecuperacao;
+
+    /**
      * @return string
      */
     public function getEstado()

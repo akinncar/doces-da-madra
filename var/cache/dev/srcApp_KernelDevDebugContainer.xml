@@ -454,6 +454,7 @@
     <service id="App\Controller\SecurityController" class="App\Controller\SecurityController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
+      <argument type="service" id="security.user_password_encoder.generic"/>
       <call method="setContainer">
         <argument type="service" id=".service_locator.KTVqfp6.App\Controller\SecurityController"/>
       </call>
@@ -481,6 +482,9 @@
       <tag name="doctrine.fixture.orm"/>
     </service>
     <service id="App\Form\Admin\CadastroProdutoType" class="App\Form\Admin\CadastroProdutoType" autowire="true" autoconfigure="true">
+      <tag name="form.type"/>
+    </service>
+    <service id="App\Form\Base\AlterarSenhaType" class="App\Form\Base\AlterarSenhaType" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
     <service id="App\Form\Base\QuantidadeType" class="App\Form\Base\QuantidadeType" autowire="true" autoconfigure="true">
@@ -740,6 +744,7 @@
       </argument>
       <argument type="collection">
         <argument>App\Form\Admin\CadastroProdutoType</argument>
+        <argument>App\Form\Base\AlterarSenhaType</argument>
         <argument>App\Form\Base\QuantidadeType</argument>
         <argument>App\Form\Base\UsuarioType</argument>
         <argument>App\Form\Usuario\CarrinhoType</argument>
@@ -986,7 +991,7 @@
       <argument type="service" id="form.registry"/>
     </service>
     <service id="form.extension" class="Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension" public="false">
-      <argument type="service" id=".service_locator.gd0KATS"/>
+      <argument type="service" id=".service_locator.nAi3Rfz"/>
       <argument type="collection">
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="iterator">
           <argument type="service" id="form.type_extension.form.transformation_failure_handling"/>
@@ -1493,14 +1498,6 @@
       </call>
       <call method="addListener">
         <argument>kernel.request</argument>
-        <argument type="collection">
-          <argument type="service" id="debug.debug_handlers_listener"/>
-          <argument>configure</argument>
-        </argument>
-        <argument>2048</argument>
-      </call>
-      <call method="addListener">
-        <argument>console.command</argument>
         <argument type="collection">
           <argument type="service" id="debug.debug_handlers_listener"/>
           <argument>configure</argument>
@@ -3940,6 +3937,8 @@
     <service id=".abstract.instanceof.App\DataFixtures\UsuarioFixtures" class="App\DataFixtures\UsuarioFixtures" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\Admin\CadastroProdutoType" class="App\Form\Admin\CadastroProdutoType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\Admin\CadastroProdutoType" class="App\Form\Admin\CadastroProdutoType" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\Base\AlterarSenhaType" class="App\Form\Base\AlterarSenhaType" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Form\Base\AlterarSenhaType" class="App\Form\Base\AlterarSenhaType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\Base\QuantidadeType" class="App\Form\Base\QuantidadeType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\Base\QuantidadeType" class="App\Form\Base\QuantidadeType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\Base\UsuarioType" class="App\Form\Base\UsuarioType" autowire="true" abstract="true"/>
@@ -4116,11 +4115,19 @@
         <argument key="authenticationUtils" type="service" id="security.authentication_utils"/>
       </argument>
     </service>
-    <service id=".service_locator.Y2Z12on" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.Z_.o95M" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="mailer" type="service" id="swiftmailer.mailer.default"/>
+      </argument>
+    </service>
+    <service id=".service_locator.30.1V0V" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\SecurityController::login" type="service" id=".service_locator.EbLunuf"/>
+        <argument key="App\Controller\SecurityController::verificarEmail" type="service" id=".service_locator.Z_.o95M"/>
         <argument key="App\Controller\SecurityController:login" type="service" id=".service_locator.EbLunuf"/>
+        <argument key="App\Controller\SecurityController:verificarEmail" type="service" id=".service_locator.Z_.o95M"/>
       </argument>
     </service>
     <service id=".service_locator.37xBtZ2" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
@@ -4176,10 +4183,11 @@
       <argument type="service" id="debug.argument_resolver.variadic.inner"/>
       <argument type="service" id="debug.stopwatch"/>
     </service>
-    <service id=".service_locator.gd0KATS" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.nAi3Rfz" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Form\Admin\CadastroProdutoType" type="service" id="App\Form\Admin\CadastroProdutoType"/>
+        <argument key="App\Form\Base\AlterarSenhaType" type="service" id="App\Form\Base\AlterarSenhaType"/>
         <argument key="App\Form\Base\QuantidadeType" type="service" id="App\Form\Base\QuantidadeType"/>
         <argument key="App\Form\Base\UsuarioType" type="service" id="App\Form\Base\UsuarioType"/>
         <argument key="App\Form\Usuario\CarrinhoType" type="service" id="App\Form\Usuario\CarrinhoType"/>
@@ -4487,7 +4495,7 @@
       <argument type="service" id="security.token_storage"/>
     </service>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver" public="false">
-      <argument type="service" id=".service_locator.Y2Z12on"/>
+      <argument type="service" id=".service_locator.30.1V0V"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver" public="false"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver" public="false"/>
@@ -4804,7 +4812,7 @@
     <service id="Swift_Mailer" alias="swiftmailer.mailer.default" public="false"/>
     <service id="Swift_Transport" alias="swiftmailer.mailer.default.transport.spool" public="false"/>
     <service id="mailer" alias="swiftmailer.mailer.default" public="true"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.Y2Z12on"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.30.1V0V"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem" public="false"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="validator" alias="debug.validator" public="true"/>
