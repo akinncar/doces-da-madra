@@ -49,10 +49,19 @@ class CadastroProdutoController extends AbstractController
 
             $em = $this->getDoctrine()->getManager();
 
+//            if ($em->persist($produto)) {
+//                $em->flush();
+//                return $this->redirectToRoute('default');
+//            } else {
+//                $this->get('session')->getFlashBag()->add(
+//                    'notice',
+//                    'As informações do produto não são validas ou já foram cadastradas!'
+//                );
+//            }
+
             $em->persist($produto);
             $em->flush();
-
-            return $this->redirectToRoute('default');
+            return $this->redirectToRoute('app_login');
         }
 
         return [

@@ -37,6 +37,7 @@ class CarrinhoController extends AbstractController
     public function index(Request $request) {
         $produtosDoCarrinho = array();
         $currentSession = array();
+        $total = 0;
 
         date_default_timezone_set('America/Sao_Paulo');
 
@@ -107,7 +108,6 @@ class CarrinhoController extends AbstractController
 
             $pedido = $pedido->setValor($valorFinal);
 
-
             $em = $this->getDoctrine()->getManager();
 
             $em->persist($pedido);
@@ -119,9 +119,33 @@ class CarrinhoController extends AbstractController
 
         }
 
+//        VarDumper::dump($currentSession);
+//        VarDumper::dump($currentSession[17]);
+//        die;
+
+//        foreach($produtosDoCarrinho as $prod) {
+//            VarDumper::dump('fwqfq');
+//            VarDumper::dump($prod);
+//            while (list($key, $value) = each($currentSession)) {
+////                VarDumper::dump('produto');
+////                VarDumper::dump($prod);
+////                VarDumper::dump('session ');
+////                VarDumper::dump(key($currentSession));
+//                if ($prod->getId() == $key) {
+//                    VarDumper::dump(floatval($prod->getPrecoVenda()));
+//                    VarDumper::dump(floatval($currentSession[$prod->getId()]));
+//                    $total += ((floatval($prod->getPrecoVenda())) * floatval($currentSession[$prod->getId()]));
+//                }
+//            }
+//        }
+//
+//        VarDumper::dump($total);
+//        die;
+
         return[
             'produtos' => $produtosDoCarrinho,
             'qtd_produtos' => $currentSession,
+            'total' => $total,
             'form'=> $form->createView(),
         ];
     }

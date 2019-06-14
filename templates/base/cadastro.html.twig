@@ -3,9 +3,16 @@
 {% block title %}Cadastrar Usuário{% endblock %}
 
 {% block body %}
-
     <h3>Faça seu cadastro</h3>
     <span>ou entre na sua conta clicando <a href="">AQUI</a></span>
-    <hr>
+    <br>
+    {% for flashMessage in app.session.flashbag.get('notice') %}
+        <br />
+        <div class="alert alert-success" style="color: red;">
+            {{ flashMessage }}
+        </div>
+        <br />
+    {% endfor %}
     {{ form(form) }}
+
 {% endblock %}

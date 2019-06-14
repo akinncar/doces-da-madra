@@ -4,5 +4,12 @@
 
 {% block body %}
     <h3>Cadastrar produto</h3>
+    {% for flashMessage in app.session.flashbag.get('notice') %}
+        <br />
+        <div class="alert alert-success" style="color: red;">
+            {{ flashMessage }}
+        </div>
+        <br />
+    {% endfor %}
     {{ form(form) }}
 {% endblock %}

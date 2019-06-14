@@ -28,12 +28,18 @@
             <nav>
                 {% if not is_granted('ROLE_LOGADO') %}
                     <div class="nav-wrapper blue">
+                        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                         <ul id="nav-mobile" class="right hide-on-med-and-down">
                             <li><a href="{{ path('default') }}"> Início </a></li>
                         </ul>
                     </div>
+
+                    <ul class="sidenav" id="mobile-demo">
+                        <li><a href="{{ path('default') }}"> Início </a></li>
+                    </ul>
                 {% else %}
                     <div class="nav-wrapper blue">
+                        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                         {#<a href="#" class="brand-logo">Doces da Madra</a>#}
                         <ul id="nav-mobile" class="right hide-on-med-and-down">
                             <li><a href="{{ path('default') }}"> Início </a></li>
@@ -60,8 +66,35 @@
                             {% endif %}
                         </ul>
                     </div>
+
+                    <ul class="sidenav" id="mobile-demo">
+                        <li><a href="{{ path('default') }}"> Início </a></li>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <li><a href="{{ path('cadastro_produto') }}">Cadastrar Produto</a></li>
+                        {% endif %}
+                        {#{% if not is_granted('ROLE_LOGADO') %}#}
+                        {#<li><a href="{{ path('cadastrar_usuario') }}">Cadastrar Usuário</a></li>#}
+                        {#{% endif %}#}
+                        {% if is_granted('ROLE_USER') %}
+                            <li><a href="{{ path('carrinho') }}">Carrinho</a></li>
+                        {% endif %}
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <li><a href="{{ path('pedidos_admin') }}">Pedidos</a></li>
+                        {% endif %}
+                        {% if is_granted('ROLE_USER') %}
+                            <li><a href="{{ path('pedidos_user') }}">Pedidos</a></li>
+                        {% endif %}
+                        {% if not is_granted('ROLE_LOGADO') %}
+                            <li><a href="{{ path('app_login') }}">Entrar</a></li>
+                        {% endif %}
+                        {% if is_granted('ROLE_LOGADO') %}
+                            <li><a href="{{ path('app_logout') }}">Sair</a></li>
+                        {% endif %}
+                    </ul>
                 {% endif %}
             </nav>
+
+
         {% endblock %}
 
         <div class="container content">
@@ -70,7 +103,14 @@
         </div>
 
         {% block javascripts %}
+            {#<script src="{{ asset('js/menu-mobile.js') }}"></script>#}
+            {#<script src="{{ asset('js/materialize.js') }}"></script>#}
+
+
             <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+            <script type="text/javascript" src="/assets/js/menu-mobile.js"></script>
+            <script type="text/javascript" src="/assets/js/materialize.js"></script>
+
         {% endblock %}
     </body>
 </html>

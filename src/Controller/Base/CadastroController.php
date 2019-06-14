@@ -48,10 +48,16 @@ class CadastroController extends AbstractController
 
             $em = $this->getDoctrine()->getManager();
 
-            $em->persist($user);
-            $em->flush();
+            if ($em->persist($user)) {
+                $em->flush();
+                return $this->redirectToRoute('default');
+            } else {
+                $this->get('session')->getFlashBag()->add(
+                    'notice',
+                    'Suas informações não são validas ou já foram cadastradas!'
+                );
+            }
 
-            return $this->redirectToRoute('app_login');
         }
 
         return [

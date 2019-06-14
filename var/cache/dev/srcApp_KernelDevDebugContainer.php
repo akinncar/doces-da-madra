@@ -16,6 +16,6 @@ if (!\class_exists(srcApp_KernelDevDebugContainer::class, false)) {
 
 return new \ContainerVGKOGtW\srcApp_KernelDevDebugContainer([
     'container.build_hash' => 'VGKOGtW',
-    'container.build_id' => '7b4eabd4',
-    'container.build_time' => 1559347557,
+    'container.build_id' => 'c116d2d8',
+    'container.build_time' => 1560469825,
 ], __DIR__.\DIRECTORY_SEPARATOR.'ContainerVGKOGtW');

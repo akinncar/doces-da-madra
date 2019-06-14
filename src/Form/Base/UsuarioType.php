@@ -63,7 +63,7 @@ class UsuarioType extends AbstractType
                 ]
             ])
 
-            ->add('telefone', NumberType::class, [
+            ->add('telefone', TextType::class, [
                 'label' => "Telefone",
                 'constraints' => array(new Length(array('min' => 8, 'max' => 14))),
                 'attr' => [
@@ -72,7 +72,8 @@ class UsuarioType extends AbstractType
                 ]
             ])
 
-            ->add('telefone2', NumberType::class, [
+            ->add('telefone2', TextType::class, [
+                'required' => false,
                 'label' => "Segundo Telefone",
                 'attr' => [
                     'placeholder' => 'Informe um contato reserva',

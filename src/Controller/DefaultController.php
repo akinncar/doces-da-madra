@@ -27,11 +27,30 @@ class DefaultController extends AbstractController
      */
     public function index() {
         $em = $this->getDoctrine()->getManager();
-        $produtos = $em->getRepository(Produto::class)->findAll();
+        $produtos = $em->getRepository(Produto::class)->findBy(['arquivado' => '0']);
+        $produtosArquivados = $em->getRepository(Produto::class)->findBy(['arquivado' => '1']);
 
         return[
             'produtos' => $produtos,
+            'produtosArquivados' => $produtosArquivados,
         ];
+    }
+
+    /**
+     * @Route("/arquivar/{id}", name="arquivar")
+     */
+    public function arquivar($id = 0) {
+        $em = $this->getDoctrine()->getManager();
+        $produto = $em->getRepository(Produto::class)->findOneBy(['id' => $id]);
+        if ($produto->getArquivado() === '0') {
+            $produto->setArquivado('1');
+        } else {
+            $produto->setArquivado('0');
+        }
+        $em->persist($produto);
+        $em->flush();
+
+        return $this->redirectToRoute('default');
     }
 
 }

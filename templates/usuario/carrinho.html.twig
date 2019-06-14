@@ -32,6 +32,7 @@
                             <td>R$ {{ (qtd * produto.precoVenda)|number_format(2, '.', ',') }}</td>
                         {% endif %}
                     {% endfor %}
+                    <span>{{ total }} </span>
                     <td>
                         <a class="btn red" href="{{ path('remover_carrinho', { 'idProduto': produto.id }) }}">
                             <i class="material-icons">

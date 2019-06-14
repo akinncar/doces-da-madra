@@ -39,6 +39,7 @@ class srcApp_KernelDevDebugContainerUrlGenerator extends Symfony\Component\Routi
         'cadastrar_usuario' => [[], ['_controller' => 'App\\Controller\\Base\\CadastroController::create'], [], [['text', '/cadastro']], [], []],
         'pedido' => [['id'], ['_controller' => 'App\\Controller\\Base\\PedidoController::viewPedido'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/pedido']], [], []],
         'default' => [[], ['_controller' => 'App\\Controller\\DefaultController::index'], [], [['text', '/']], [], []],
+        'arquivar' => [['id'], ['id' => 0, '_controller' => 'App\\Controller\\DefaultController::arquivar'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/arquivar']], [], []],
         'app_login' => [[], ['_controller' => 'App\\Controller\\SecurityController::login'], [], [['text', '/login']], [], []],
         'app_logout' => [[], ['_controller' => 'App\\Controller\\SecurityController::logout'], [], [['text', '/logout']], [], []],
         'solicitar_senha' => [[], ['_controller' => 'App\\Controller\\SecurityController::solicitarSenha'], [], [['text', '/solicitar-senha']], [], []],
