@@ -43,7 +43,7 @@ class CarrinhoController extends AbstractController
 
         $pedido = new Pedido();
         $pedido->setDataEntrega(new \DateTime(date('d-m-Y')));
-        $pedido->setHoraEntrega(new \DateTime(date('h:i:s')));
+        $pedido->setHoraEntrega(new \DateTime(date('H:i:s')));
         $form = $this->createForm(CarrinhoType::class, $pedido);
         $form->handleRequest($request);
 
@@ -81,7 +81,7 @@ class CarrinhoController extends AbstractController
 
             $pedido->setIdUsuario($this->getUser());
             $pedido->setDataCriacao(new \DateTime(date('d-m-Y')));
-            $pedido->setHoraCriacao(new \DateTime(date('h:i:s')));
+            $pedido->setHoraCriacao(new \DateTime(date('H:i:s')));
             $pedido->setStatus('1');
             $pedido->setValor(00.00);
 
@@ -199,7 +199,7 @@ class CarrinhoController extends AbstractController
 //
 //        $pedido->setIdUsuario($this->getUser());
 //        $pedido->setDataCriacao(new \DateTime(date('d-m-Y')));
-//        $pedido->setHoraCriacao(new \DateTime(date('h:i:s')));
+//        $pedido->setHoraCriacao(new \DateTime(date('H:i:s')));
 //        $pedido->setArquivado('N');
 //        $pedido->setStatus('1');
 //        $pedido->setObs($obs);

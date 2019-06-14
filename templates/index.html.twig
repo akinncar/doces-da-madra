@@ -93,6 +93,13 @@
             let route = "{{ path('arquivar') }}";
             location.href = route + '/' + idProduto ;
         }
+
+        function addCart(id) {
+            var idProduto = id;
+            var qtdProduto = document.getElementById('input-' + id).value;
+            let route = "{{ path('adicionar_carrinho') }}";
+            location.href = route + '/' + idProduto + '?qtdProduto=' + qtdProduto;
+            }
     </script>
 
 {% endblock %}

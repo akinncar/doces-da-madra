@@ -45,10 +45,9 @@ class CarrinhoType extends AbstractType
 
             ->add('hora_entrega', TimeType::class, [
                 'required' => 'true',
-                'label' => 'Horário da Entrega',
+                'label' => 'Horário da Entrega (Brasília)',
                 'widget' => 'single_text',
                 'attr' => [
-
                 ]
             ])
 
