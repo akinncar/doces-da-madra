@@ -9,6 +9,8 @@ return array(
     'Collator' => $vendorDir . '/symfony/intl/Resources/stubs/Collator.php',
     'IntlDateFormatter' => $vendorDir . '/symfony/intl/Resources/stubs/IntlDateFormatter.php',
     'Locale' => $vendorDir . '/symfony/intl/Resources/stubs/Locale.php',
+    'MySQLDump' => $vendorDir . '/dg/mysql-dump/src/MySQLDump.php',
+    'MySQLImport' => $vendorDir . '/dg/mysql-dump/src/MySQLImport.php',
     'NumberFormatter' => $vendorDir . '/symfony/intl/Resources/stubs/NumberFormatter.php',
     'SqlFormatter' => $vendorDir . '/jdorn/sql-formatter/lib/SqlFormatter.php',
 );

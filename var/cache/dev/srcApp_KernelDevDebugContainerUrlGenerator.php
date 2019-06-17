@@ -36,6 +36,7 @@ class srcApp_KernelDevDebugContainerUrlGenerator extends Symfony\Component\Routi
         'pedidos_admin' => [[], ['_controller' => 'App\\Controller\\Admin\\PedidosController::listarPedidosAdmin'], [], [['text', '/pedidos-geral']], [], []],
         'status' => [['id'], ['_controller' => 'App\\Controller\\Admin\\PedidosController::status'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/status']], [], []],
         'status_back' => [['id'], ['_controller' => 'App\\Controller\\Admin\\PedidosController::statusBack'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/status-back']], [], []],
+        'backup' => [[], ['_controller' => 'App\\Controller\\Admin\\PedidosController::backup'], [], [['text', '/backup']], [], []],
         'cadastrar_usuario' => [[], ['_controller' => 'App\\Controller\\Base\\CadastroController::create'], [], [['text', '/cadastro']], [], []],
         'pedido' => [['id'], ['_controller' => 'App\\Controller\\Base\\PedidoController::viewPedido'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/pedido']], [], []],
         'default' => [[], ['_controller' => 'App\\Controller\\DefaultController::index'], [], [['text', '/']], [], []],

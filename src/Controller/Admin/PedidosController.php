@@ -87,4 +87,17 @@ class PedidosController extends AbstractController
 
         return $this->redirectToRoute('pedidos_admin');
     }
+
+    /**
+     * @Route("/backup", name="backup")
+     */
+    public function backup() {
+        $db = new \mysqli('127.0.0.1:8889', 'root', 'root', 'ddm');
+        $dump = new \MySQLDump($db);
+
+        $dump->save('/Users/'. get_current_user() .'/Desktop/export.sql');
+        $dump->save('C:\\Users\\'. get_current_user() .'\\Desktop\\export.sql');
+
+        return $this->redirectToRoute('pedidos_admin');
+    }
 }

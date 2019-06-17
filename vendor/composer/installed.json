@@ -1,5 +1,47 @@
 [
     {
+        "name": "dg/mysql-dump",
+        "version": "v1.5.0",
+        "version_normalized": "1.5.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/dg/MySQL-dump.git",
+            "reference": "6c9cf07092bcc4a140bef01c64d883ebfccfccfa"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/dg/MySQL-dump/zipball/6c9cf07092bcc4a140bef01c64d883ebfccfccfa",
+            "reference": "6c9cf07092bcc4a140bef01c64d883ebfccfccfa",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.6"
+        },
+        "time": "2018-10-31T00:31:09+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "classmap": [
+                "src/"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "BSD-3-Clause"
+        ],
+        "authors": [
+            {
+                "name": "David Grudl",
+                "homepage": "http://davidgrudl.com"
+            }
+        ],
+        "description": "MySQL database dump.",
+        "homepage": "https://github.com/dg/MySQL-dump",
+        "keywords": [
+            "mysql"
+        ]
+    },
+    {
         "name": "doctrine/annotations",
         "version": "v1.6.1",
         "version_normalized": "1.6.1.0",

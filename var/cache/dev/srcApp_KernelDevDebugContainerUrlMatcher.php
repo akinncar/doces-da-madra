@@ -22,6 +22,7 @@ class srcApp_KernelDevDebugContainerUrlMatcher extends Symfony\Bundle\FrameworkB
             '/_profiler/open' => [[['_route' => '_profiler_open_file', '_controller' => 'web_profiler.controller.profiler::openAction'], null, null, null, false, false, null]],
             '/cadastrar-produto' => [[['_route' => 'cadastro_produto', '_controller' => 'App\\Controller\\Admin\\CadastroProdutoController::index'], null, null, null, false, false, null]],
             '/pedidos-geral' => [[['_route' => 'pedidos_admin', '_controller' => 'App\\Controller\\Admin\\PedidosController::listarPedidosAdmin'], null, null, null, false, false, null]],
+            '/backup' => [[['_route' => 'backup', '_controller' => 'App\\Controller\\Admin\\PedidosController::backup'], null, null, null, false, false, null]],
             '/cadastro' => [[['_route' => 'cadastrar_usuario', '_controller' => 'App\\Controller\\Base\\CadastroController::create'], null, null, null, false, false, null]],
             '/' => [[['_route' => 'default', '_controller' => 'App\\Controller\\DefaultController::index'], null, null, null, false, false, null]],
             '/login' => [[['_route' => 'app_login', '_controller' => 'App\\Controller\\SecurityController::login'], null, null, null, false, false, null]],

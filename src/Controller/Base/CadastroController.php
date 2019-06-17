@@ -33,7 +33,7 @@ class CadastroController extends AbstractController
      * @Template("base/cadastro.html.twig")
      * @return array
      */
-    public function create(Request $request)
+    public function create(Request $request, \Swift_Mailer $mailer)
     {
         $user = new Usuario();
         $form = $this->createForm(UsuarioType::class, $user);
@@ -48,10 +48,21 @@ class CadastroController extends AbstractController
 
             $em = $this->getDoctrine()->getManager();
 
-            if ($em->persist($user)) {
+            try {
+                $em->persist($user);
                 $em->flush();
-                return $this->redirectToRoute('default');
-            } else {
+
+                $message = (new \Swift_Message('Doces da Madra: Recuperar Senha'))
+                    ->setFrom('akinncar@gmail.com')
+                    ->setTo($user->getEmail())
+                    ->setBody(
+                        'Bem-vindo(a) '.$user->getNome().', você realizou seu cadastro no site Doces da Madra, agora você está habilitado a fazer encomendas entrando no sistema com seu nome de usuário('.$user->getUsername().'), e com a senha que você utilizou no cadastro!'
+                    );
+
+                $mailer->send($message);
+
+                return $this->redirectToRoute('app_login');
+            } catch(\Doctrine\DBAL\DBALException $e) {
                 $this->get('session')->getFlashBag()->add(
                     'notice',
                     'Suas informações não são validas ou já foram cadastradas!'
