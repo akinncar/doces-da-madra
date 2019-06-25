@@ -15,7 +15,7 @@
         {% block header %}
             <div class="hero-image">
                 <div class="hero-text">
-                    <h1 style="font-size:50px">Doces da Madra</h1>
+                    <h1 style="font-size:50px"><a class="white-text" href="{{ path('default') }}"> Doces da Madra </a></h1>
                     {% if not is_granted('ROLE_LOGADO') %}
                         <a href="{{ path('cadastrar_usuario') }}" class="btn blue list-point">Cadastre-se</a>
                         <br>
@@ -93,7 +93,6 @@
                     </ul>
                 {% endif %}
             </nav>
-
 
         {% endblock %}
 
