@@ -15,4 +15,16 @@
     {% endfor %}
     {{ form(form) }}
 
+    <script src="/assets/js/jquery-ajax.js"></script>
+    <script src="/assets/js/jquery-mask.js"></script>
+    <script type="text/javascript">
+        $(".telefone").mask("(00) 00000-0000");
+        $(".cpf").mask("000.000.000-00");
+        $(".cep").mask("00000-000");
+        $(".nr").mask("0000");
+        $(".estado").mask("AA");
+
+    </script>
+
+
 {% endblock %}

@@ -58,7 +58,7 @@ class UsuarioType extends AbstractType
             ->add('cpf', TextType::class, [
                 'label' => "CPF",
                 'attr' => [
-                    'class' => 'form-control',
+                    'class' => 'form-control cpf',
                     'placeholder' => 'Informe seu cpf',
                 ]
             ])
@@ -68,7 +68,7 @@ class UsuarioType extends AbstractType
                 'constraints' => array(new Length(array('min' => 8, 'max' => 14))),
                 'attr' => [
                     'placeholder' => 'Informe seu telefone para contato',
-                    'class' => 'form-control'
+                    'class' => 'form-control telefone'
                 ]
             ])
 
@@ -77,7 +77,7 @@ class UsuarioType extends AbstractType
                 'label' => "Segundo Telefone",
                 'attr' => [
                     'placeholder' => 'Informe um contato reserva',
-                    'class' => 'form-control'
+                    'class' => 'form-control telefone'
                 ]
             ])
 
@@ -86,7 +86,7 @@ class UsuarioType extends AbstractType
                 'constraints' => array(new Length(array('min' => 2, 'max' => 2))),
                 'attr' => [
                     'placeholder' => 'Informe seu telefone para contato',
-                    'class' => 'form-control'
+                    'class' => 'form-control estado'
                 ]
             ])
 
@@ -122,7 +122,7 @@ class UsuarioType extends AbstractType
                 'constraints' => array(new Length(array('min' => 6, 'max' => 20))),
                 'attr' => [
                     'placeholder' => 'Informe o seu CEP',
-                    'class' => 'form-control',
+                    'class' => 'form-control cep',
                 ]
             ])
 
@@ -139,7 +139,7 @@ class UsuarioType extends AbstractType
                 'constraints' => array(new Length(array('min' => 1, 'max' => 5))),
                 'attr' => [
                     'placeholder' => 'Informe o número de sua residência',
-                    'class' => 'form-control'
+                    'class' => 'form-control nr'
                 ]
             ])
 

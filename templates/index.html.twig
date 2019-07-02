@@ -19,6 +19,7 @@
                         <div class="card-content">
                             <p>{{ produto.descricao|striptags|length > 30 ? produto.descricao|striptags|slice(0, 30) ~ '...' : produto.descricao|striptags }}</p>
                         </div>
+
                         {% if is_granted('ROLE_USER') %}
                             <div class="card-action row valign-wrapper no-margin">
                                 <span class="left col s6">Adicione ao Carrinho</span>
@@ -47,8 +48,6 @@
 
         {% endfor %}
 
-
-
        {% if is_granted('ROLE_ADMIN') %}
             <div class="row">
                 <div class="col s12">
@@ -69,7 +68,8 @@
                                     </div>
                                     <div class="card-content">
                                         <p>{{ produto.descricao|striptags|length > 30 ? produto.descricao|striptags|slice(0, 30) ~ '...' : produto.descricao|striptags }}</p>
-                                    </div>
+                                     </div>
+
                                     <div class="card-action row valign-wrapper no-margin">
                                         <span>Desarquivar</span>
                                         <a onclick="arquivar({{ produto.id }})" data-target="modal1" class="btn green right-aligned col s2" data-id="{{ produto.id }}">
@@ -87,7 +87,11 @@
             </div>
         {% endif %}
 
+    <script type="text/javascript" src="/assets/js/materialize.js"></script>
+    <script src="/assets/js/jquery-ajax.js"></script>
+
     <script>
+
         function arquivar(id) {
             var idProduto = id;
             let route = "{{ path('arquivar') }}";
@@ -97,9 +101,13 @@
         function addCart(id) {
             var idProduto = id;
             var qtdProduto = document.getElementById('input-' + id).value;
-            let route = "{{ path('adicionar_carrinho') }}";
-            location.href = route + '/' + idProduto + '?qtdProduto=' + qtdProduto;
+            if (qtdProduto > 0) {
+                let route = "{{ path('adicionar_carrinho') }}";
+                location.href = route + '/' + idProduto + '?qtdProduto=' + qtdProduto;
+            } else {
+                alert('Selecione uma quantidade maior que 0 (zero)')
             }
+        }
     </script>
 
 {% endblock %}

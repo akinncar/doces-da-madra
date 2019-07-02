@@ -52,6 +52,11 @@ class CarrinhoController extends AbstractController
         $currentSession = $this->session->all();
         $currentSessionKey = array_keys($currentSession);
 
+        foreach ($currentSession as $key => $pdt) {
+            $aux = $em->getRepository(Produto::class)->find($key);
+            $aux ? ($total += ( $aux->getPrecoVenda() *  $pdt )) : null;
+        }
+
         foreach ( $currentSessionKey as $produto) {
             $objProduto = $em->getRepository(Produto::class)->find($produto);
             if ($objProduto !== null) {
