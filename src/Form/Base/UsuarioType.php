@@ -21,7 +21,7 @@ class UsuarioType extends AbstractType
         $builder
             ->add('nome', TextType::class, [
                 'label' => "Nome Completo",
-                'constraints' => array(new Length(array('min' => 6, 'max' => 60))),
+                'constraints' => array(new Length(array('min' => 2, 'max' => 60))),
                 'attr' => [
                     'placeholder' => 'Informe o seu nome',
                     'class' => 'form-control'
@@ -30,7 +30,7 @@ class UsuarioType extends AbstractType
 
             ->add('email', EmailType::class, [
                 'label' => "E-mail",
-                'constraints' => array(new Length(array('min' => 6, 'max' => 60))),
+                'constraints' => array(new Length(array('min' => 3, 'max' => 60))),
                 'attr' => [
                     'placeholder' => 'Informe o seu e-mail',
                     'class' => 'form-control'
@@ -65,7 +65,7 @@ class UsuarioType extends AbstractType
 
             ->add('telefone', TextType::class, [
                 'label' => "Telefone",
-                'constraints' => array(new Length(array('min' => 8, 'max' => 14))),
+                'constraints' => array(new Length(array('min' => 8, 'max' => 25))),
                 'attr' => [
                     'placeholder' => 'Informe seu telefone para contato',
                     'class' => 'form-control telefone'
@@ -101,7 +101,7 @@ class UsuarioType extends AbstractType
 
             ->add('rua', TextType::class, [
                 'label' => "Rua",
-                'constraints' => array(new Length(array('min' => 6, 'max' => 30))),
+                'constraints' => array(new Length(array('min' => 4, 'max' => 30))),
                 'attr' => [
                     'placeholder' => 'Informe sua rua',
                     'class' => 'form-control'
@@ -119,7 +119,7 @@ class UsuarioType extends AbstractType
 
             ->add('cep', TextType::class, [
                 'label' => "CEP",
-                'constraints' => array(new Length(array('min' => 6, 'max' => 20))),
+                'constraints' => array(new Length(array('min' => 6, 'max' => 25))),
                 'attr' => [
                     'placeholder' => 'Informe o seu CEP',
                     'class' => 'form-control cep',
